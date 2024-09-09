@@ -1,6 +1,14 @@
-function App() {
+import { lazy, Suspense } from "react";
+import Navbar from "../Components/Navbar";
+const Home = lazy(() => import("../Screens/Home"));
 
-  return <h1>Hello World</h1>
+function App() {
+  return (
+    <Suspense>
+      <Navbar />
+      <Home />
+    </Suspense>
+  );
 }
 
-export default App
+export default App;
