@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="300" height="300" viewBox="0 0 300 300">
+  <defs>
+    <clipPath id="clip-Buisness">
+      <rect width="300" height="300"/>
+    </clipPath>
+  </defs>
+  <g id="Buisness" clip-path="url(#clip-Buisness)">
+    <g id="Group_29" data-name="Group 29">
+      <g id="Group_21" data-name="Group 21">
+        <circle id="Ellipse_1" data-name="Ellipse 1" cx="150" cy="150" r="150" fill="#1494f1" opacity="0.2"/>
+      </g>
+      <g id="briefcase" transform="translate(70 70)">
+        <path id="Path_187" data-name="Path 187" d="M125.976,26.521h-7.293A33.211,33.211,0,0,0,86.194,0H72.933A33.211,33.211,0,0,0,40.445,26.521H33.151A33.191,33.191,0,0,0,0,59.672V79.563H159.127V59.672a33.191,33.191,0,0,0-33.151-33.151Zm-71.713,0A19.891,19.891,0,0,1,72.933,13.261H86.194a19.891,19.891,0,0,1,18.671,13.261Z" fill="#1494f1"/>
+        <path id="Path_188" data-name="Path 188" d="M86.194,20.63a6.63,6.63,0,0,1-13.261,0V14H0V47.151A33.191,33.191,0,0,0,33.151,80.3h92.824a33.191,33.191,0,0,0,33.151-33.151V14H86.194Z" transform="translate(0 78.824)" fill="#1494f1"/>
+      </g>
+    </g>
+  </g>
+</svg>

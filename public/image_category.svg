@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="300" height="300" viewBox="0 0 300 300">
+  <defs>
+    <clipPath id="clip-image">
+      <rect width="300" height="300"/>
+    </clipPath>
+  </defs>
+  <g id="image" clip-path="url(#clip-image)">
+    <g id="Group_28" data-name="Group 28">
+      <g id="Group_27" data-name="Group 27">
+        <circle id="Ellipse_1" data-name="Ellipse 1" cx="150" cy="150" r="150" fill="#ff7162" opacity="0.2"/>
+      </g>
+      <g id="picture" transform="translate(69.69 69.691)">
+        <path id="Path_325" data-name="Path 325" d="M74.217,17.542a20.077,20.077,0,0,0-28.4,0L.038,63.318A33.4,33.4,0,0,0,33.246,94.264h93.695a33.25,33.25,0,0,0,18.419-5.571Z" transform="translate(0.216 66.355)" fill="#ff7162"/>
+        <ellipse id="Ellipse_2" data-name="Ellipse 2" cx="13.707" cy="12.945" rx="13.707" ry="12.945" transform="translate(106.515 27.004)" fill="#ff7162"/>
+        <path id="Path_326" data-name="Path 326" d="M127.157,0H33.462A33.5,33.5,0,0,0,0,33.462V111L36.568,74.433a33.462,33.462,0,0,1,47.329,0l71.148,71.147a33.255,33.255,0,0,0,5.575-18.424V33.462A33.5,33.5,0,0,0,127.157,0Zm-6.692,66.924a26.77,26.77,0,1,1,26.77-26.77A26.77,26.77,0,0,1,120.464,66.924Z" fill="#ff7162"/>
+      </g>
+    </g>
+  </g>
+</svg>

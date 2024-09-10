@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="300" height="300" viewBox="0 0 300 300">
+  <defs>
+    <clipPath id="clip-Code">
+      <rect width="300" height="300"/>
+    </clipPath>
+  </defs>
+  <g id="Code" clip-path="url(#clip-Code)">
+    <g id="Group_31" data-name="Group 31">
+      <g id="Group_28" data-name="Group 28">
+        <g id="Group_27" data-name="Group 27">
+          <circle id="Ellipse_1" data-name="Ellipse 1" cx="150" cy="150" r="150" fill="#0cc27b" opacity="0.2"/>
+        </g>
+      </g>
+      <path id="display-code" d="M159.319,120.488V20.915A19.939,19.939,0,0,0,139.4,1H19.915A19.939,19.939,0,0,0,0,20.915v99.574H73.021v13.276H39.83v13.277h79.659V133.765H86.3V120.488ZM90.984,38.9l9.387-9.386,21.893,21.9a13.218,13.218,0,0,1,0,18.667l-21.9,21.9-9.387-9.386,21.893-21.9L90.978,38.9ZM68.341,82.591l-9.387,9.386-21.893-21.9a13.218,13.218,0,0,1,0-18.667l21.9-21.9L68.348,38.9,46.455,60.8,68.348,82.591Z" transform="translate(70.341 84.979)" fill="#0cc27b"/>
+    </g>
+  </g>
+</svg>

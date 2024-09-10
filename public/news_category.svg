@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="300" height="300" viewBox="0 0 300 300">
+  <defs>
+    <clipPath id="clip-Music">
+      <rect width="300" height="300"/>
+    </clipPath>
+  </defs>
+  <g id="Music" clip-path="url(#clip-Music)">
+    <g id="Group_32" data-name="Group 32">
+      <g id="Group_28" data-name="Group 28">
+        <g id="Group_27" data-name="Group 27">
+          <circle id="Ellipse_1" data-name="Ellipse 1" cx="150" cy="150" r="150" fill="#625df5" opacity="0.2"/>
+        </g>
+      </g>
+      <path id="music-alt" d="M139.222,4.195a18.177,18.177,0,0,0-15-3.876L51.324,13.97A18.226,18.226,0,0,0,36.452,31.9v68.681A24.052,24.052,0,0,0,24.3,97.2a24.3,24.3,0,1,0,24.3,24.3V57.226l85.055-15.917V82.384a24.052,24.052,0,0,0-12.151-3.408,24.3,24.3,0,1,0,24.3,24.3V18.223a18.228,18.228,0,0,0-6.588-14.03Z" transform="translate(69.096 83.098)" fill="#625df5"/>
+    </g>
+  </g>
+</svg>

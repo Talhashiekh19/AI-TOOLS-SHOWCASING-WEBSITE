@@ -11,15 +11,17 @@ import {
 } from "@mui/material";
 import React from "react";
 import { pages } from "../Constants";
+import useResponsivness from "../Hooks/useResponsivness";
 
 const Navbar = () => {
+  const checkingSm = useResponsivness("down", "sm");
   return (
     <Box>
       <AppBar
-        sx={{ p: 2,bgcolor:"black" }}
+        sx={{ p: 2,bgcolor:"black",zIndex:9999999 }}
         component="nav"
         position="sticky"
-        className="background"
+        className="background navbar"
       >
         <Container
           maxWidth="lg"
@@ -32,18 +34,18 @@ const Navbar = () => {
           component="section"
         >
           <Box component="div">
-            <Typography className="poppins" fontWeight="bold" variant="h5">
+            <Typography className="poppins" fontWeight="bold" variant={checkingSm ? "h6" : "h5"}>
               {"<SkyAiVerse/>"}
             </Typography>
           </Box>
-          <Box component="div" display="flex" gap={6}>
+          <Box component="div" display="flex" gap={checkingSm ? 1 : 6}>
             {pages.map((link) => (
               <Button color="primary" variant="text" key={link}>
                 <Typography
                   position="relative"
                   className="poppins nav_link"
                   textTransform="capitalize"
-                  fontSize="1.2rem"
+                  fontSize={checkingSm ? "1rem" : "1.2rem"}
                   color="white"
                 >
                   {link}

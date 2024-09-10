@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="300" height="300" viewBox="0 0 300 300">
+  <defs>
+    <clipPath id="clip-Text">
+      <rect width="300" height="300"/>
+    </clipPath>
+  </defs>
+  <g id="Text" clip-path="url(#clip-Text)">
+    <g id="Group_30" data-name="Group 30">
+      <g id="Group_27" data-name="Group 27">
+        <g id="Group_26" data-name="Group 26">
+          <circle id="Ellipse_1" data-name="Ellipse 1" cx="150" cy="150" r="150" fill="#ffcd2e" opacity="0.2"/>
+        </g>
+      </g>
+      <path id="text-2" data-name="text" d="M126.99,0H33.418A33.458,33.458,0,0,0,0,33.418v93.571a33.458,33.458,0,0,0,33.418,33.418H126.99a33.458,33.458,0,0,0,33.418-33.418V33.418A33.458,33.458,0,0,0,126.99,0ZM113.623,66.836a6.684,6.684,0,0,1-6.684-6.684,6.684,6.684,0,0,0-6.684-6.684H86.888v53.469h6.684a6.684,6.684,0,1,1,0,13.367H66.837a6.684,6.684,0,1,1,0-13.367H73.52V53.469H60.153a6.684,6.684,0,0,0-6.684,6.684,6.684,6.684,0,0,1-13.367,0A20.051,20.051,0,0,1,60.153,40.1h40.1a20.051,20.051,0,0,1,20.051,20.051A6.684,6.684,0,0,1,113.623,66.836Z" transform="translate(69.796 69.796)" fill="#ffcd2e"/>
+    </g>
+  </g>
+</svg>

@@ -42,18 +42,15 @@
   font-family: "Poppins", system-ui !important;
 }
 
+
 .navbar {
   background-image: url("./../public/background.png") !important;
   background-attachment: fixed;
+  background: linear-gradient(90deg,rgba(98,93,245,.1) .08%,rgba(98,93,245,.03) 16.53%,rgba(98,93,245,.03) 49.06%,rgba(98,93,245,.03) 83.21%,rgba(98,93,245,.1) 99.99%) !important;
+  -webkit-backdrop-filter: blur(19.596906662px) !important;
+  backdrop-filter: blur(19.596906662px) !important;
+  position: fixed !important;
 }
-
-/* .heading{
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%,-50%);
-    width: 100%;
-} */
 
 
 .colorfull_text{
@@ -63,3 +60,40 @@
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
+
+.heading_underline::after{
+  position: absolute;
+  content: "";
+  height: 10px;
+  width: 13%;
+  border-radius: 10px;
+  background-color: var(--LINK-UNDERLINE-COLOR);
+  bottom: 8px;
+  z-index: -1;
+  left: 0;
+}
+
+.card{
+  border-radius: 18px !important;
+  border: 1px solid hsla(0,0%,100%,.12) !important;
+  background: hsla(0,0%,100%,.06) !important;
+  padding: 10px !important;
+  margin: 0 0 30px !important;
+  max-width: 95% !important;
+  transition: transform 0.5s linear !important;
+}
+
+.card:hover{
+  transform: translateY(-15px);
+}
+
+.category_card{
+  width: 100% !important;
+  background: hsla(0,0%,100%,.059) !important;
+  height: 188px !important;
+  border-radius: 18px !important;
+  position: relative !important;
+  overflow: hidden !important;
+  cursor: pointer !important;
+}
+
