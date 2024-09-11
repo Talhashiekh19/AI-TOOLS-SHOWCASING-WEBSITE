@@ -7,11 +7,15 @@ import {
 } from "@mui/material";
 import React from "react";
 import { GREY_COLOR } from "../Constants";
+import { useNavigate } from "react-router-dom";
 
-const CategoryCard = ({name,description,image}) => {
+const CategoryCard = ({name,description,image,navigateTo}) => {
+  const navigate = useNavigate()
   return (
-    <Card sx={{ mb:4 }} className="category_card">
+    
+    <Card sx={{ mb:2 }} className="category_card">
       <CardActionArea
+      onClick={() => navigate(navigateTo)}
         sx={{
           width: "100%",
           height: "100%",

@@ -7,8 +7,8 @@ import MonicaImage from "../public/monica.webp";
 import CHatGptImage from "../public/Chatgpt.webp";
 import JasperImage from "../public/Jasper.webp";
 import AIComponent from "../Components/AIComponent";
-import { GREY_COLOR, IMAGE_SIZE } from "../Constants";
-import useResponsivness from "../Hooks/useResponsivness";
+import { GREY_COLOR, IMAGE_SIZE, pages } from "../Constants";
+import {useResponsivness} from "../Helpers";
 
 const Home = () => {
   const checkingLg = useResponsivness("down", "lg");
@@ -16,8 +16,8 @@ const Home = () => {
   const checkingWidth = checkingLg ? (checkingSm ? "xs" : "lg") : "md";
   const imageSize = checkingSm ? 50 : IMAGE_SIZE;
   return (
-    <Box component="section" py={35}>
-      <Box position="relative" zIndex={88888}>
+    <Box id={pages[0]} component="section" py={35}>
+      <Box position="relative">
         <Typography
           className="paytone"
           textAlign="center"

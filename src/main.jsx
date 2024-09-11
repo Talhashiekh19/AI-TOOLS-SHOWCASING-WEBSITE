@@ -1,10 +1,44 @@
-import { StrictMode } from 'react'
-import { createRoot } from 'react-dom/client'
-import App from './App.jsx'
-import './App.css'
+import { lazy, StrictMode, Suspense } from "react";
+import { createRoot } from "react-dom/client";
+import App from "./App.jsx";
+import "./App.css";
+import { RouterProvider, createBrowserRouter } from "react-router-dom";
+import { pages } from "../Constants.jsx";
 
-createRoot(document.getElementById('root')).render(
+const CategoriesScreen = lazy(() => import("../Screens/CategoriesScreen.jsx"))
+const CategoriesSection = lazy(() => import("../Screens/CategoriesSection.jsx"));
+const ToolsScreen = lazy(() => import("../Screens/ToolsScreen.jsx"));
+const Home = lazy(() => import("../Screens/Home"));
+
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <App />,
+    children: [
+      {
+        path: "/",
+        element: (
+          <>
+            <Home />
+            <ToolsScreen />
+            <CategoriesSection />
+          </>
+        ),
+      },
+      {
+        path: pages[1],
+        element:<CategoriesScreen />,
+      },
+      {
+        path: pages[2],
+        element: <ToolsScreen/>,
+      }
+    ],
+  },
+]);
+
+createRoot(document.getElementById("root")).render(
   <StrictMode>
-    <App />
-  </StrictMode>,
-)
+    <RouterProvider router={router} />
+  </StrictMode>
+);

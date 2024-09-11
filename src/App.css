@@ -4,6 +4,10 @@
   --LINK-UNDERLINE-COLOR: #625df5;
 }
 
+html{
+  scroll-behavior: smooth;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -61,14 +65,18 @@
     -webkit-text-fill-color: transparent;
 }
 
+.heading_underline{
+  width: fit-content;
+}
+
 .heading_underline::after{
   position: absolute;
   content: "";
   height: 10px;
-  width: 13%;
+  width: 50%;
   border-radius: 10px;
   background-color: var(--LINK-UNDERLINE-COLOR);
-  bottom: 8px;
+  bottom: 2px;
   z-index: -1;
   left: 0;
 }

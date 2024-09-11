@@ -1,13 +1,13 @@
 import { Container, Grid2 as Grid } from "@mui/material";
 import React from "react";
-import HeadingAndDescription from "../Components/HeadingAndDescription";
 import CategoryCard from "../Components/CategoryCard";
-import { CATEGORIES } from "../Constants";
+import { CATEGORIES, pages } from "../Constants";
+import { HomePageHeadingAndDescription } from "../Helpers";
 
 const Categories = () => {
   return (
-    <Container maxWidth="lg" sx={{ pb: 10 }} component="section">
-      <HeadingAndDescription
+    <Container id={pages[1]} maxWidth="lg" sx={{ pb: 10 }} component="section">
+      <HomePageHeadingAndDescription
         heading={"AI Tool Categories"}
         description={
           "Unlock innovation with our diverse range of cutting-edge solutions"
@@ -20,6 +20,7 @@ const Categories = () => {
               name={name}
               description={description}
               image={image}
+              navigateTo={"Categories"}
             />
           </Grid>
         ))}
