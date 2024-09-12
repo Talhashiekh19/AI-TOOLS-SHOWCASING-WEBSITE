@@ -14,7 +14,7 @@ export const HomePageHeadingAndDescription = ({ heading, description }) => {
   return (
     <HeadingAndDescription
       heading={heading}
-      headingVariant={matchesSm ? "h5" : "h4"}
+      headingVariant={matchesSm ? "h5" : "h3"}
       descVaraint={matchesSm ? "body2" : "body1"}
       description={description}
     />

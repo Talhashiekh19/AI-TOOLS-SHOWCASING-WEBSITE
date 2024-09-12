@@ -6,6 +6,10 @@ import BackgroundCategoryImage from "./public/background_category.svg";
 import BgRemovalCategoryImage from "./public/bgremoval_category.svg";
 import TextCategoryImage from "./public/text_category.svg";
 
+
+import {FacebookRounded,Twitter,YouTube,Instagram,LinkedIn} from "@mui/icons-material";
+
+
 export const pages = ["Home", "Categories", "Tools"];
 
 
@@ -63,5 +67,35 @@ export const CATEGORIES = [
       "Stay ahead with AI-powered news analysis and aggregation tools. Get real-time insights, summaries, and trends tailored to your interests.",
     image: TextCategoryImage,
     key: 7,
+  },
+];
+
+const iconStyles = {fontSize:25,color:'white'}
+
+export const SOCIAL_LINKS = [
+  {
+    Icon: <FacebookRounded sx={iconStyles} />,
+    link: "",
+    key: 1,
+  },
+  {
+    Icon: <Twitter sx={iconStyles}/>,
+    link: "",
+    key: 2,
+  },
+  {
+    Icon: <Instagram sx={iconStyles}/>,
+    link: "https://www.instagram.com/hisky_tech?igsh=MzE1aG9rbDdpMWtp",
+    key: 3,
+  },
+  {
+    Icon: <YouTube sx={iconStyles}/>,
+    link: "",
+    key: 4,
+  },
+  {
+    Icon: <LinkedIn sx={iconStyles}/>,
+    link: "https://www.linkedin.com/company/hiskytech/posts/?feedView=all",
+    key: 5,
   },
 ];

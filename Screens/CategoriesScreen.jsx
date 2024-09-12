@@ -1,11 +1,15 @@
-import { Container, Box, Grid2 as Grid } from "@mui/material";
-import React from "react";
+import { Container, Box, Grid2 as Grid, Button } from "@mui/material";
+import React, { useEffect, useRef, useState } from "react";
 import HeadingAndDescription from "../Components/HeadingAndDescription";
 import { CATEGORIES } from "../Constants";
 import SingleCard from "../Components/SingleCard";
 import {useResponsivness} from "../Helpers";
+import { useLocation } from "react-router-dom";
 
 const CategoriesScreen = () => {
+  const location = useLocation();
+  const {name} = location.state || {};
+  
   const checkingDownSm = useResponsivness("down","sm");
   const headings = CATEGORIES.map((c) => {
     return {
@@ -13,6 +17,13 @@ const CategoriesScreen = () => {
       name: c.name,
     };
   });
+
+  const ButtonRef = useRef(null);
+
+  useEffect(() => {
+    ButtonRef?.current?.click()
+  },[])
+
   return (
     <Container
       className="background"
@@ -20,7 +31,9 @@ const CategoriesScreen = () => {
       maxWidth="lg"
       component="section"
     >
+      <a ref={ButtonRef} href={`#${name}`}></a>
       <HeadingAndDescription
+
         heading={"AI Tools Categories"}
         headingVariant={checkingDownSm ? "h5" : "h3"}
         descVaraint={checkingDownSm ? "body2" : "body1"}
@@ -39,8 +52,9 @@ const CategoriesScreen = () => {
       />
       {headings.map(({ name, key }) => {
         return (
-          <Box key={key}>
+          <Box id={name} key={key}>
             <HeadingAndDescription
+             
               heading={name}
               headingVariant={"h4"}
               display="flex"
