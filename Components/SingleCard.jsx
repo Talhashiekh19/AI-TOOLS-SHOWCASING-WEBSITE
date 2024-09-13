@@ -8,12 +8,16 @@ import {
 } from "@mui/material";
 import React from "react";
 import { GREY_COLOR } from "../Constants";
-import CHatGptImage from "../public/Chatgpt.webp";
+import CHatGptImage from "/Chatgpt.webp";
+import { useNavigate } from "react-router-dom";
 
 const SingleCard = () => {
+
+  const navigate = useNavigate()
+
   return (
     <Card className="card">
-      <CardActionArea>
+      <CardActionArea onClick={() => navigate("/ImageToPdfScreen")}>
         <CardMedia
           component="img"
           height="200"

@@ -1,11 +1,11 @@
 import { Box, Typography } from "@mui/material";
 import React from "react";
-import LoppinImage from "../public/loopin.webp";
-import BingImage from "../public/bing.webp";
-import AdobeImage from "../public/Adobe.webp";
-import MonicaImage from "../public/monica.webp";
-import CHatGptImage from "../public/Chatgpt.webp";
-import JasperImage from "../public/Jasper.webp";
+import LoppinImage from "/loopin.webp";
+import BingImage from "/bing.webp";
+import AdobeImage from "/Adobe.webp";
+import MonicaImage from "/monica.webp";
+import CHatGptImage from "/Chatgpt.webp";
+import JasperImage from "/Jasper.webp";
 import AIComponent from "../Components/AIComponent";
 import { GREY_COLOR, IMAGE_SIZE, pages } from "../Constants";
 import {useResponsivness} from "../Helpers";

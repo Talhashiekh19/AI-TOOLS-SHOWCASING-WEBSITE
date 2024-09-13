@@ -9,7 +9,7 @@ import {
 import React from "react";
 import { pages } from "../Constants";
 
-import background from "../public/background.png";
+import background from "/background.png";
 
 const SideBar = ({ openDrawer, setopenDrawer,handleNavigate }) => {
   return (

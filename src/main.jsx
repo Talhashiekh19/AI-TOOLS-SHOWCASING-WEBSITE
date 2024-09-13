@@ -1,10 +1,11 @@
-import { lazy, StrictMode, Suspense } from "react";
+import { lazy, StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import App from "./App.jsx";
 import "./App.css";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import { pages } from "../Constants.jsx";
 
+const ImageToPdfScreen = lazy(() => import("../Screens/ImageToPdfScreen.jsx"))
 const CategoriesScreen = lazy(() => import("../Screens/CategoriesScreen.jsx"))
 const CategoriesSection = lazy(() => import("../Screens/CategoriesSection.jsx"));
 const ToolsScreen = lazy(() => import("../Screens/ToolsScreen.jsx"));
@@ -32,6 +33,10 @@ const router = createBrowserRouter([
       {
         path: pages[2],
         element: <ToolsScreen/>,
+      },
+      {
+        path:"ImageToPdfScreen",
+        element: <ImageToPdfScreen/>,
       }
     ],
   },

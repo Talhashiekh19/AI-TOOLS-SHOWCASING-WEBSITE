@@ -31,7 +31,7 @@ html{
 }
 
 .background {
-    background: black url(../public/background.png) no-repeat center fixed !important;
+    background: black url(/background.png) no-repeat center fixed !important;
 }
 
 .paytone{
@@ -48,7 +48,7 @@ html{
 
 
 .navbar {
-  background-image: url("./../public/background.png") !important;
+  background-image: url("/background.png") !important;
   background-attachment: fixed;
   background: linear-gradient(90deg,rgba(98,93,245,.1) .08%,rgba(98,93,245,.03) 16.53%,rgba(98,93,245,.03) 49.06%,rgba(98,93,245,.03) 83.21%,rgba(98,93,245,.1) 99.99%) !important;
   -webkit-backdrop-filter: blur(19.596906662px) !important;

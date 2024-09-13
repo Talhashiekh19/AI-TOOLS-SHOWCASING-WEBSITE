@@ -1,10 +1,10 @@
-import ImageCategoryImage from "./public/image_category.svg";
-import IconCategoryImage from "./public/icon_category.svg";
-import PdfCategoryImage from "./public/pdf_category.svg";
-import VideoCategoryImage from "./public/video_category.svg";
-import BackgroundCategoryImage from "./public/background_category.svg";
-import BgRemovalCategoryImage from "./public/bgremoval_category.svg";
-import TextCategoryImage from "./public/text_category.svg";
+import ImageCategoryImage from "/image_category.svg";
+import IconCategoryImage from "/icon_category.svg";
+import PdfCategoryImage from "/pdf_category.svg";
+import VideoCategoryImage from "/video_category.svg";
+import BackgroundCategoryImage from "/background_category.svg";
+import BgRemovalCategoryImage from "/bgremoval_category.svg";
+import TextCategoryImage from "/text_category.svg";
 
 
 import {FacebookRounded,Twitter,YouTube,Instagram,LinkedIn} from "@mui/icons-material";
@@ -99,3 +99,11 @@ export const SOCIAL_LINKS = [
     key: 5,
   },
 ];
+
+
+export const TOOLS = [
+  {
+    name:"SkyImageToPdf",
+    
+  }
+]
