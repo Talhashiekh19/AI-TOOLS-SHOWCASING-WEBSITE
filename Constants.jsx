@@ -5,6 +5,7 @@ import VideoCategoryImage from "/video_category.svg";
 import BackgroundCategoryImage from "/background_category.svg";
 import BgRemovalCategoryImage from "/bgremoval_category.svg";
 import TextCategoryImage from "/text_category.svg";
+import ConvertApiImage from "/ConvertApi.png";
 
 
 import {FacebookRounded,Twitter,YouTube,Instagram,LinkedIn} from "@mui/icons-material";
@@ -103,7 +104,10 @@ export const SOCIAL_LINKS = [
 
 export const TOOLS = [
   {
-    name:"SkyImageToPdf",
-    
+    name:"HiSkyPDF",
+    description:"PDF Converter",
+    path:"ImageToPdfScreen",
+    key:1,
+    image:ConvertApiImage
   }
 ]

@@ -11,13 +11,13 @@ import { GREY_COLOR } from "../Constants";
 import CHatGptImage from "/Chatgpt.webp";
 import { useNavigate } from "react-router-dom";
 
-const SingleCard = () => {
+const SingleCard = ({name,description,path,image}) => {
 
   const navigate = useNavigate()
 
   return (
     <Card className="card">
-      <CardActionArea onClick={() => navigate("/ImageToPdfScreen")}>
+      <CardActionArea onClick={() => navigate(path)}>
         <CardMedia
           component="img"
           height="200"
@@ -27,7 +27,7 @@ const SingleCard = () => {
         />
         <CardContent sx={{ display: "flex", px: 0, gap: 2 }}>
           <Box>
-            <img src={CHatGptImage} alt="Loading..." width={40} height={40} />
+            <img src={image} alt="Loading..." width={40} height={40} />
           </Box>
           <Box>
             <Typography
@@ -37,7 +37,7 @@ const SingleCard = () => {
               className="poppins"
               fontWeight="bold"
             >
-              Lizard
+              {name}
             </Typography>
             <Typography
               mb={-2}
@@ -45,7 +45,7 @@ const SingleCard = () => {
               variant="body2"
               color={GREY_COLOR}
             >
-              Video generator
+              {description}
             </Typography>
           </Box>
         </CardContent>

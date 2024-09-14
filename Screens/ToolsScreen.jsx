@@ -1,8 +1,8 @@
 import React from "react";
-import HeadingAndDescription from "../Components/HeadingAndDescription";
 import { Container, Grid2 as Grid, Typography } from "@mui/material";
 import SingleCard from "../Components/SingleCard";
 import { HomePageHeadingAndDescription } from "../Helpers";
+import { TOOLS } from "../Constants";
 
 const ToolsScreen = () => {
   return (
@@ -14,27 +14,11 @@ const ToolsScreen = () => {
         }
       />
       <Grid container spacing={2}>
-        <Grid size={{ lg: 4, md: 6, xs: 12 }}>
-          <SingleCard />
-        </Grid>
-        <Grid size={{ lg: 4, md: 6, xs: 12 }}>
-          <SingleCard />
-        </Grid>
-        <Grid size={{ lg: 4, md: 6, xs: 12 }}>
-          <SingleCard />
-        </Grid>
-        <Grid size={{ lg: 4, md: 6, xs: 12 }}>
-          <SingleCard />
-        </Grid>
-        <Grid size={{ lg: 4, md: 6, xs: 12 }}>
-          <SingleCard />
-        </Grid>
-        <Grid size={{ lg: 4, md: 6, xs: 12 }}>
-          <SingleCard />
-        </Grid>
-        <Grid size={{ lg: 4, md: 6, xs: 12 }}>
-          <SingleCard />
-        </Grid>
+        {TOOLS.map((tool) => (
+          <Grid size={{ lg: 4, md: 6, xs: 12 }}>
+            <SingleCard key={tool.key} {...tool} />
+          </Grid>
+        ))}
       </Grid>
     </Container>
   );

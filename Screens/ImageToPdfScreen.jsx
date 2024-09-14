@@ -1,9 +1,12 @@
 import React, { useRef, useState } from "react";
 import { Box, Button, Container, Typography, TextField } from "@mui/material";
 import { GREY_COLOR, LINK_UNDERLINE_COLOR } from "../Constants";
-import ConvertApi from 'convertapi-js'
-
-// i am making an image to pdf converter tool for a company named HiSkyTech can you give to me a name of this tool it should be of one word only and also a one line headline about this tool
+import ConvertApi from "convertapi-js";
+import {
+  CloudUpload as CloudUploadIcon,
+  Download as DownloadIcon,
+} from "@mui/icons-material";
+import Loader from "../Components/Loader";
 
 const SelectButton = ({ onClick, text }) => {
   return (
@@ -24,13 +27,43 @@ const SelectButton = ({ onClick, text }) => {
   );
 };
 
-const ConvertButton = ({handleConvert}) => (
-  <Button onClick={handleConvert} variant="contained" color="error" sx={{ width: "100%", p: 1, mt: 1 }}>
-    <Typography className="poppins" variant="h5" textTransform="capitalize">
-      Convert to PDF
-    </Typography>
+const ConvertButton = ({ handleConvert, loaded }) => (
+  <Button
+    startIcon={
+      loaded ? null : (
+        <CloudUploadIcon style={{ fontSize: 30, marginRight: 5 }} />
+      )
+    }
+    onClick={handleConvert}
+    variant="contained"
+    color="error"
+    sx={{ width: "100%", p: 2, mt: 1 }}
+  >
+    {loaded ? (
+      <Loader />
+    ) : (
+      <Typography className="poppins" variant="h5" textTransform="capitalize">
+        Convert to PDF
+      </Typography>
+    )}
   </Button>
 );
+
+const DownloadButton = ({ handleDownload }) => {
+  return (
+    <Button
+      onClick={handleDownload}
+      startIcon={<DownloadIcon style={{ fontSize: 30, marginRight: 5 }} />}
+      variant="contained"
+      color="error"
+      sx={{ width: "100%", p: 2, mt: 1 }}
+    >
+      <Typography className="poppins" variant="h5" textTransform="capitalize">
+        Download PDF
+      </Typography>
+    </Button>
+  );
+};
 
 // 482889292
 
@@ -38,46 +71,83 @@ const ImageToPdfScreen = () => {
   const [selected, setselected] = useState(null);
   const [url, seturl] = useState("");
   const [value, setvalue] = useState("");
-  const [files,setfiles] = useState(null);
+  const [files, setfiles] = useState(null);
+  const [loaded, setloaded] = useState(false);
+  const [showDwnlod, setshowDwnlod] = useState(false);
+  const [pdf, setpdf] = useState(null);
+  const [selection,setselection] = useState(null);
+  const downloadButtonRef = useRef(null);
 
-  let convertApi = ConvertApi.auth(import.meta.env.VITE_SECRET_IMAGE_TO_PDF_KEY)
+  let convertApi = ConvertApi.auth(
+    import.meta.env.VITE_SECRET_IMAGE_TO_PDF_KEY
+  );
 
-  async function handleConvert(){
-      let params = convertApi.createParams()
-      params.add('Files', files);
-      console.log("Converting")
-      let result = await convertApi.convert('images', 'pdf', params)
-      console.log("Converted")
-    console.log(result)
+  async function handleConvert() {
+    try {
+      const textFile = new File([value], "example.txt", { type: "text/plain" }); 
+      console.log(textFile)
+
+      let params = convertApi.createParams();
+      selected ? params.add("Files", files) : params.add("Files", textFile);
+      console.log(files)
+      setloaded(true);
+      setshowDwnlod(false);
+      let result;
+      if(selected){
+        result = await convertApi.convert("images","pdf", params);
+      }else {
+        result = await convertApi.convert('txt', 'pdf', params)
+      }
+      setloaded(false);
+      setshowDwnlod(true);
+      setpdf(result.dto.Files[0]);
+      console.log(result.dto.Files[0]);
+
+    } catch (e) {
+      setloaded(false);
+      setshowDwnlod(false);
+    }
   }
-
-
 
   const inputRef = useRef(null);
 
   function handleSelectImage() {
     setselected(true);
+    setselection("");
+    setshowDwnlod(false)
     inputRef.current.click();
   }
 
   function handleSelectFiles(e) {
     const selectedFiles = e?.target?.files;
-    setfiles(selectedFiles) 
-    if(selectedFiles){
-        const image = URL.createObjectURL(selectedFiles[0]);
-        seturl(image);
+    setfiles(selectedFiles);
+    console.log(selectedFiles[0])
+    if (selectedFiles) {
+      const image = URL.createObjectURL(selectedFiles[0]);
+      seturl(image);
     }
+  }
+
+  function handleDownload() {
+    downloadButtonRef.current.click();
+    seturl("");
+    setfiles(null);
+    setselection("")
+    setselected(true);
+    setpdf(null);
+    setshowDwnlod(true)
   }
 
   return (
     <>
-    
       <input
         ref={inputRef}
         onChange={handleSelectFiles}
         accept="image/*"
         type="file"
+        hidden
       />
+      <a href={pdf?.Url} ref={downloadButtonRef} download></a>
       <Container
         maxWidth="lg"
         sx={{
@@ -94,7 +164,7 @@ const ImageToPdfScreen = () => {
         <Typography
           textAlign="center"
           className="paytone"
-          variant="h3"
+          variant="h4"
           color="white"
         >
           Image & Text to{" "}
@@ -105,45 +175,58 @@ const ImageToPdfScreen = () => {
           HiSkyPDF.
         </Typography>
         <Box width={400}>
-          {selected !== null && (
-            <>
+          {/* {selected !== null && ( */}
+            {selection !== null && <>
               {selected ? (
                 <>
-                <img
-                  style={{ width: "100%", maxHeight: 400 }}
-                  src={url}
-                  alt="Loading..."
-                />
-                <ConvertButton
-                handleConvert={handleConvert}
-                />
+                  {showDwnlod ? null : (
+                    <img
+                      style={{ width: "100%", maxHeight: 400 }}
+                      src={url}
+                      alt="Loading..."
+                    />
+                  )}
+                    <>
+                      {showDwnlod ? (
+                        <DownloadButton handleDownload={handleDownload} />
+                      ) : (
+                        <ConvertButton
+                          loaded={loaded}
+                          handleConvert={handleConvert}
+                        />
+                      )}
+                    </>
                 </>
               ) : (
                 <>
-                <TextField
-                  value={value}
-                  onChange={(e) => setvalue(e.target.value)}
-                  fullWidth
-                  multiline
-                  rows={15}
-                  sx={{ border: `1px solid ${GREY_COLOR}`, color: "white" }}
-                  defaultValue="Enter Text to convert"
-                  InputProps={{
-                    style: {
-                      color: "white",
-                      fontSize: 20,
-                      fontFamily: "poppins",
-                    }, // Text color inside input
-                  }}
-                />
-                <ConvertButton
-                handleConvert={handleConvert}
-                
-                />
+                  <TextField
+                    value={value}
+                    onChange={(e) => setvalue(e.target.value)}
+                    fullWidth
+                    placeholder="Enter the text to convert"
+                    multiline
+                    rows={15}
+                    sx={{ border: `1px solid ${GREY_COLOR}`, color: "white" }}
+                    InputProps={{
+                      style: {
+                        color: "white",
+                        fontSize: 20,
+                        fontFamily: "poppins",
+                      }, // Text color inside input
+                    }}
+                  />
+                  {showDwnlod ? (
+                    <DownloadButton handleDownload={handleDownload} />
+                  ) : (
+                    <ConvertButton
+                      loaded={loaded}
+                      handleConvert={handleConvert}
+                    />
+                  )}
                 </>
               )}
-            </>
-          )}
+            </>}
+          {/* // )} */}
         </Box>
         <Box display="flex" gap={3}>
           <SelectButton onClick={handleSelectImage} text="Select Image" />
