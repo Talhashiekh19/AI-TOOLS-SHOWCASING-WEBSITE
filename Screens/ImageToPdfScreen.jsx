@@ -1,9 +1,10 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Box, Button, Container, Typography, TextField } from "@mui/material";
 import { GREY_COLOR, LINK_UNDERLINE_COLOR } from "../Constants";
 import ConvertApi from "convertapi-js";
 import {
   CloudUpload as CloudUploadIcon,
+  Download,
   Download as DownloadIcon,
 } from "@mui/icons-material";
 import Loader from "../Components/Loader";
@@ -27,14 +28,14 @@ const SelectButton = ({ onClick, text }) => {
   );
 };
 
-const ConvertButton = ({ handleConvert, loaded }) => (
+const ConvertButton = ({ handleConversion, loaded }) => (
   <Button
     startIcon={
       loaded ? null : (
         <CloudUploadIcon style={{ fontSize: 30, marginRight: 5 }} />
       )
     }
-    onClick={handleConvert}
+    onClick={handleConversion}
     variant="contained"
     color="error"
     sx={{ width: "100%", p: 2, mt: 1 }}
@@ -68,86 +69,114 @@ const DownloadButton = ({ handleDownload }) => {
 // 482889292
 
 const ImageToPdfScreen = () => {
-  const [selected, setselected] = useState(null);
-  const [url, seturl] = useState("");
-  const [value, setvalue] = useState("");
-  const [files, setfiles] = useState(null);
-  const [loaded, setloaded] = useState(false);
-  const [showDwnlod, setshowDwnlod] = useState(false);
-  const [pdf, setpdf] = useState(null);
-  const [selection,setselection] = useState(null);
+  const inputRef = useRef(null);
+
   const downloadButtonRef = useRef(null);
+
+  const [selectedAnyThing, setselectedAnyThing] = useState(false);
+
+  const [selected, setselected] = useState("nothing");
+
+  const [files, setfiles] = useState(null);
+
+  const [url, seturl] = useState("");
+
+  const [filename, setfilename] = useState("");
+
+  const [pdf, setpdf] = useState(null);
+
+  const [loaded, setloaded] = useState(false);
+
+  const [showDwnlod, setshowDwnlod] = useState(false);
 
   let convertApi = ConvertApi.auth(
     import.meta.env.VITE_SECRET_IMAGE_TO_PDF_KEY
   );
 
-  async function handleConvert() {
+
+  async function handleConversion() {
+    const checkingSelection = selected === "Image";
     try {
-      const textFile = new File([value], "example.txt", { type: "text/plain" }); 
-      console.log(textFile)
-
-      let params = convertApi.createParams();
-      selected ? params.add("Files", files) : params.add("Files", textFile);
-      console.log(files)
       setloaded(true);
-      setshowDwnlod(false);
-      let result;
-      if(selected){
-        result = await convertApi.convert("images","pdf", params);
-      }else {
-        result = await convertApi.convert('txt', 'pdf', params)
-      }
+      let params = convertApi.createParams();
+      params.add(checkingSelection ? "Files" : "File", checkingSelection ? files : files[0]);
+      let result = await convertApi.convert(checkingSelection ? "images" : "txt", "pdf", params);
       setloaded(false);
-      setshowDwnlod(true);
-      setpdf(result.dto.Files[0]);
-      console.log(result.dto.Files[0]);
-
+      setpdf(result.dto.Files[0]?.Url);
+      setshowDwnlod(true)
     } catch (e) {
       setloaded(false);
-      setshowDwnlod(false);
     }
   }
 
-  const inputRef = useRef(null);
-
-  function handleSelectImage() {
-    setselected(true);
-    setselection("");
-    setshowDwnlod(false)
-    inputRef.current.click();
-  }
 
   function handleSelectFiles(e) {
     const selectedFiles = e?.target?.files;
     setfiles(selectedFiles);
-    console.log(selectedFiles[0])
     if (selectedFiles) {
       const image = URL.createObjectURL(selectedFiles[0]);
       seturl(image);
+      setfilename(selectedFiles[0]?.name);
     }
   }
 
+
   function handleDownload() {
     downloadButtonRef.current.click();
-    seturl("");
-    setfiles(null);
-    setselection("")
-    setselected(true);
-    setpdf(null);
     setshowDwnlod(true)
+    seturl(null);
+    setfiles(null);
+    setselected("nothing");
+    setpdf(null);
+    setfilename("");
   }
+
+
+  function handleSelection(sel){
+    setshowDwnlod(false)
+    setselectedAnyThing(true);
+    setselected(sel);
+    inputRef.current.setAttribute("accept", sel === "Image" ? "image/*" : "text/*");
+    inputRef.current.click();
+  }
+
+
+  const ImageAndTextUIComponent = () => {
+    const checkingForSelection = selected === "Text";
+    return (
+      <>
+        {checkingForSelection ? (
+          <Typography
+            color="white"
+            textAlign="center"
+            variant="h6"
+            className="poppins"
+          >
+            {filename}
+          </Typography>
+        ) : (
+          <img
+            style={{ width: "100%", maxHeight: 400 }}
+            src={url}
+            alt="Loading..."
+          />
+        )}
+          {!showDwnlod && <ConvertButton handleConversion={handleConversion} loaded={loaded} />}
+          {showDwnlod && <DownloadButton handleDownload={handleDownload} />}
+      </>
+    );
+  };
 
   return (
     <>
       <input
         ref={inputRef}
         onChange={handleSelectFiles}
-        accept="image/*"
+        accept={"image/*"}
         type="file"
         hidden
       />
-      <a href={pdf?.Url} ref={downloadButtonRef} download></a>
+      <a href={pdf} ref={downloadButtonRef} download></a>
       <Container
         maxWidth="lg"
         sx={{
@@ -175,62 +204,11 @@ const ImageToPdfScreen = () => {
           HiSkyPDF.
         </Typography>
         <Box width={400}>
-          {/* {selected !== null && ( */}
-            {selection !== null && <>
-              {selected ? (
-                <>
-                  {showDwnlod ? null : (
-                    <img
-                      style={{ width: "100%", maxHeight: 400 }}
-                      src={url}
-                      alt="Loading..."
-                    />
-                  )}
-                    <>
-                      {showDwnlod ? (
-                        <DownloadButton handleDownload={handleDownload} />
-                      ) : (
-                        <ConvertButton
-                          loaded={loaded}
-                          handleConvert={handleConvert}
-                        />
-                      )}
-                    </>
-                </>
-              ) : (
-                <>
-                  <TextField
-                    value={value}
-                    onChange={(e) => setvalue(e.target.value)}
-                    fullWidth
-                    placeholder="Enter the text to convert"
-                    multiline
-                    rows={15}
-                    sx={{ border: `1px solid ${GREY_COLOR}`, color: "white" }}
-                    InputProps={{
-                      style: {
-                        color: "white",
-                        fontSize: 20,
-                        fontFamily: "poppins",
-                      }, // Text color inside input
-                    }}
-                  />
-                  {showDwnlod ? (
-                    <DownloadButton handleDownload={handleDownload} />
-                  ) : (
-                    <ConvertButton
-                      loaded={loaded}
-                      handleConvert={handleConvert}
-                    />
-                  )}
-                </>
-              )}
-            </>}
-          {/* // )} */}
+          {selectedAnyThing && <ImageAndTextUIComponent />}
         </Box>
         <Box display="flex" gap={3}>
-          <SelectButton onClick={handleSelectImage} text="Select Image" />
-          <SelectButton onClick={() => setselected(false)} text="Enter Text" />
+          <SelectButton onClick={() => handleSelection("Image")} text="Select Image" />
+          <SelectButton onClick={() => handleSelection("Text")} text="Select Text" />
         </Box>
       </Container>
     </>
