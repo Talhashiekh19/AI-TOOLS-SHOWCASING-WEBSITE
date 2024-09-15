@@ -8,10 +8,9 @@ import {
 } from "@mui/material";
 import React from "react";
 import { GREY_COLOR } from "../Constants";
-import CHatGptImage from "/Chatgpt.webp";
 import { useNavigate } from "react-router-dom";
 
-const SingleCard = ({name,description,path,image}) => {
+const SingleCard = ({name,description,path,icon,image}) => {
 
   const navigate = useNavigate()
 
@@ -22,12 +21,12 @@ const SingleCard = ({name,description,path,image}) => {
           component="img"
           height="200"
           sx={{borderRadius:"18px"}}
-          image="https://findmyaitool-rh.s3.ap-southeast-2.amazonaws.com/images/ai-tool/web-thumbnail/Apple%20Books-1723795200803"
+          image={image}
           alt="green iguana"
         />
         <CardContent sx={{ display: "flex", px: 0, gap: 2 }}>
           <Box>
-            <img src={image} alt="Loading..." width={40} height={40} />
+            <img src={icon} alt="Loading..." width={40} height={40} />
           </Box>
           <Box>
             <Typography

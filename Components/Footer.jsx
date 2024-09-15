@@ -81,6 +81,7 @@ const Footer = ({ handleNavigate }) => {
               <Box mt={-3}>
                 {pages.map((link) => (
                   <CustomFooterTypography
+                  key={link}
                     handleNavigate={handleNavigate}
                     text={link}
                   />

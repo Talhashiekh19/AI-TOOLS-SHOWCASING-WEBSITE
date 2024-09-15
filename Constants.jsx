@@ -5,7 +5,10 @@ import VideoCategoryImage from "/video_category.svg";
 import BackgroundCategoryImage from "/background_category.svg";
 import BgRemovalCategoryImage from "/bgremoval_category.svg";
 import TextCategoryImage from "/text_category.svg";
-import ConvertApiImage from "/ConvertApi.png";
+import ConvertApiIcon from "/ConvertApi.png";
+import ConvertApiImage from "/Convert_Api_Image.png";
+import RemoveBgIcon from "/remove-bg-icon.png";
+import RemoveBgFront from "/Remove-bg-front.png";
 
 
 import {FacebookRounded,Twitter,YouTube,Instagram,LinkedIn} from "@mui/icons-material";
@@ -108,6 +111,15 @@ export const TOOLS = [
     description:"PDF Converter",
     path:"ImageToPdfScreen",
     key:1,
+    icon:ConvertApiIcon,
     image:ConvertApiImage
-  }
+  },
+  {
+    name:"HiSkyErase",
+    description:"Background Remover",
+    path:"BackgroundRemoverScreen",
+    key:2,
+    icon:RemoveBgIcon,
+    image:RemoveBgFront
+  },
 ]

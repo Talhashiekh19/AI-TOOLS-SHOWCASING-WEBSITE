@@ -1,70 +1,10 @@
-import React, { useEffect, useRef, useState } from "react";
-import { Box, Button, Container, Typography, TextField } from "@mui/material";
+import React, { useRef, useState } from "react";
+import { Box, Button, Typography, TextField } from "@mui/material";
 import { GREY_COLOR, LINK_UNDERLINE_COLOR } from "../Constants";
 import ConvertApi from "convertapi-js";
-import {
-  CloudUpload as CloudUploadIcon,
-  Download,
-  Download as DownloadIcon,
-} from "@mui/icons-material";
-import Loader from "../Components/Loader";
-
-const SelectButton = ({ onClick, text }) => {
-  return (
-    <Button
-      onClick={onClick}
-      variant="contained"
-      sx={{ py: 3, px: 5, borderRadius: 5, bgcolor: LINK_UNDERLINE_COLOR }}
-    >
-      <Typography
-        color="white"
-        className="poppins"
-        textTransform="capitalize"
-        variant="h5"
-      >
-        {text}
-      </Typography>
-    </Button>
-  );
-};
-
-const ConvertButton = ({ handleConversion, loaded }) => (
-  <Button
-    startIcon={
-      loaded ? null : (
-        <CloudUploadIcon style={{ fontSize: 30, marginRight: 5 }} />
-      )
-    }
-    onClick={handleConversion}
-    variant="contained"
-    color="error"
-    sx={{ width: "100%", p: 2, mt: 1 }}
-  >
-    {loaded ? (
-      <Loader />
-    ) : (
-      <Typography className="poppins" variant="h5" textTransform="capitalize">
-        Convert to PDF
-      </Typography>
-    )}
-  </Button>
-);
-
-const DownloadButton = ({ handleDownload }) => {
-  return (
-    <Button
-      onClick={handleDownload}
-      startIcon={<DownloadIcon style={{ fontSize: 30, marginRight: 5 }} />}
-      variant="contained"
-      color="error"
-      sx={{ width: "100%", p: 2, mt: 1 }}
-    >
-      <Typography className="poppins" variant="h5" textTransform="capitalize">
-        Download PDF
-      </Typography>
-    </Button>
-  );
-};
+import { useResponsivness } from "../Helpers";
+import ReusableScreenContainer from "../Components/ReusableScreenContainer";
+import { ConvertButton, DownloadButton, SelectButton } from "../Components/CustomButtons";
 
 // 482889292
 
@@ -89,26 +29,37 @@ const ImageToPdfScreen = () => {
 
   const [showDwnlod, setshowDwnlod] = useState(false);
 
+  const [value, setvalue] = useState("");
+
   let convertApi = ConvertApi.auth(
     import.meta.env.VITE_SECRET_IMAGE_TO_PDF_KEY
   );
 
-
   async function handleConversion() {
     const checkingSelection = selected === "Image";
     try {
+      let file;
+      if (!checkingSelection) {
+        file = new File([value], filename, { type: "text/plain" });
+      }
       setloaded(true);
       let params = convertApi.createParams();
-      params.add(checkingSelection ? "Files" : "File", checkingSelection ? files : files[0]);
-      let result = await convertApi.convert(checkingSelection ? "images" : "txt", "pdf", params);
+      params.add(
+        checkingSelection ? "Files" : "File",
+        checkingSelection ? files : file
+      );
+      let result = await convertApi.convert(
+        checkingSelection ? "images" : "txt",
+        "pdf",
+        params
+      );
       setloaded(false);
       setpdf(result.dto.Files[0]?.Url);
-      setshowDwnlod(true)
+      setshowDwnlod(true);
     } catch (e) {
       setloaded(false);
     }
   }
-
 
   function handleSelectFiles(e) {
     const selectedFiles = e?.target?.files;
@@ -120,10 +71,9 @@ const ImageToPdfScreen = () => {
     }
   }
 
-
   function handleDownload() {
     downloadButtonRef.current.click();
-    setshowDwnlod(true)
+    setshowDwnlod(true);
     seturl(null);
     setfiles(null);
     setselected("nothing");
@@ -131,42 +81,28 @@ const ImageToPdfScreen = () => {
     setfilename("");
   }
 
-
-  function handleSelection(sel){
-    setshowDwnlod(false)
+  function handleSelection(sel) {
+    setshowDwnlod(false);
     setselectedAnyThing(true);
     setselected(sel);
-    inputRef.current.setAttribute("accept", sel === "Image" ? "image/*" : "text/*");
-    inputRef.current.click();
+    sel === "Image" ? inputRef.current.click() : null;
   }
 
-
   const ImageAndTextUIComponent = () => {
-    const checkingForSelection = selected === "Text";
     return (
-      <>
-        {checkingForSelection ? (
-          <Typography
-            color="white"
-            textAlign="center"
-            variant="h6"
-            className="poppins"
-          >
-            {filename}
-          </Typography>
-        ) : (
-          <img
-            style={{ width: "100%", maxHeight: 400 }}
-            src={url}
-            alt="Loading..."
-          />
+      <Box display="flex" justifyContent="center">
+        {!showDwnlod && (
+          <ConvertButton text="Convert to PDF" handleConversion={handleConversion} loaded={loaded} />
         )}
-          {!showDwnlod && <ConvertButton handleConversion={handleConversion} loaded={loaded} />}
-          {showDwnlod && <DownloadButton handleDownload={handleDownload} />}
-      </>
+        {showDwnlod && (
+          <DownloadButton text="Download PDF" handleDownload={handleDownload} />
+        )}
+      </Box>
     );
   };
 
+  const checkingForSelection = selected === "Text";
+  const checkingSMDown = useResponsivness("down", "sm");
   return (
     <>
       <input
@@ -177,40 +113,66 @@ const ImageToPdfScreen = () => {
         hidden
       />
       <a href={pdf} ref={downloadButtonRef} download></a>
-      <Container
-        maxWidth="lg"
-        sx={{
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          flexDirection: "column",
-          gap: 3,
-          pt: 15,
-          pb: 5,
-        }}
-        component="section"
-      >
+      <ReusableScreenContainer>
         <Typography
           textAlign="center"
           className="paytone"
           variant="h4"
           color="white"
         >
-          Image & Text to{" "}
+          Image & Text to {checkingSMDown && <br />}{" "}
           <span className="colorfull_text"> PDF Converter </span>
         </Typography>
-        <Typography className="mulish" variant="h6" color="white">
+        <Typography
+          textAlign="center"
+          className="mulish"
+          variant="h6"
+          color="white"
+        >
           Seamlessly convert text and images into high-quality PDFs with
           HiSkyPDF.
         </Typography>
-        <Box width={400}>
-          {selectedAnyThing && <ImageAndTextUIComponent />}
-        </Box>
+        {selectedAnyThing && (
+          <Box width={400}>
+            {checkingForSelection && (
+              <TextField
+                value={value}
+                onChange={(e) => setvalue(e.target.value)}
+                fullWidth
+                multiline
+                rows={15}
+                sx={{ border: `1px solid ${GREY_COLOR}`, color: "white" }}
+                placeholder="Enter Text to convert"
+                InputProps={{
+                  style: {
+                    color: "white",
+                    fontSize: 20,
+                    fontFamily: "poppins",
+                  },
+                }}
+              />
+            )}
+            {!checkingForSelection && (
+              <img
+                style={{ width: "100%", maxHeight: 400 }}
+                src={url}
+                alt="Loading..."
+              />
+            )}
+            <ImageAndTextUIComponent />
+          </Box>
+        )}
         <Box display="flex" gap={3}>
-          <SelectButton onClick={() => handleSelection("Image")} text="Select Image" />
-          <SelectButton onClick={() => handleSelection("Text")} text="Select Text" />
+          <SelectButton
+            onClick={() => handleSelection("Image")}
+            text="Select Image"
+          />
+          <SelectButton
+            onClick={() => handleSelection("Text")}
+            text="Select Text"
+          />
         </Box>
-      </Container>
+      </ReusableScreenContainer>
     </>
   );
 };
