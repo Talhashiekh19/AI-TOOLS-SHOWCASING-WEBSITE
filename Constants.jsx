@@ -24,53 +24,53 @@ export const IMAGE_SIZE = 100;
 
 export const CATEGORIES = [
   {
-    name: "Image",
-    description:
+    cname: "Image",
+    cdescription:
       "Discover AI-powered image editing and enhancement tools designed to elevate your creativity. From filters to artistic transformations.",
-    image: ImageCategoryImage,
-    key: 1,
+    cicon: ImageCategoryImage,
+    ckey: 1,
   },
   {
-    name: "Icon",
-    description:
+    cname: "Icon",
+    cdescription:
       "Explore AI tools for icon creation and customization. Craft unique, scalable icons that bring clarity and style to any digital project with ease and precision.",
-    image: IconCategoryImage,
-    key: 2,
+    cicon: IconCategoryImage,
+    ckey: 2,
   },
   {
-    name: "PDF",
-    description:
+    cname: "PDF",
+    cdescription:
       "Simplify your workflow with AI-driven PDF tools for editing, converting, and organizing documents. Handle all your PDF tasks efficiently in one place.",
-    image: PdfCategoryImage,
-    key: 3,
+    cicon: PdfCategoryImage,
+    ckey: 3,
   },
   {
-    name: "Video",
-    description:
+    cname: "Video",
+    cdescription:
       "Unlock the potential of AI in video editing and creation. Automate cutting-edge video processing, from effects to enhancements, for professional-level results.",
-    image: VideoCategoryImage,
-    key: 4,
+    cicon: VideoCategoryImage,
+    ckey: 4,
   },
   {
-    name: "Background",
-    description:
+    cname: "Background",
+    cdescription:
       "Seamlessly change or enhance backgrounds with AI tools tailored for stunning transformations. Create visually captivating environments with just a few clicks.",
-    image: BackgroundCategoryImage,
-    key: 5,
+    cicon: BackgroundCategoryImage,
+    ckey: 5,
   },
   {
-    name: "Background Removal",
-    description:
+    cname: "Background Removal",
+    cdescription:
       "Effortlessly remove backgrounds from images using AI technology. Achieve clean, sharp extractions to integrate your subjects into any project or design.",
-    image: BgRemovalCategoryImage,
-    key: 6,
+    cicon: BgRemovalCategoryImage,
+    ckey: 6,
   },
   {
-    name: "News",
-    description:
+    cname: "News",
+    cdescription:
       "Stay ahead with AI-powered news analysis and aggregation tools. Get real-time insights, summaries, and trends tailored to your interests.",
-    image: TextCategoryImage,
-    key: 7,
+    cicon: TextCategoryImage,
+    ckey: 7,
   },
 ];
 
@@ -109,7 +109,7 @@ export const TOOLS = [
   {
     name:"HiSkyPDF",
     description:"PDF Converter",
-    path:"ImageToPdfScreen",
+    path:"/ImageToPdfScreen",
     key:1,
     icon:ConvertApiIcon,
     image:ConvertApiImage
@@ -117,7 +117,7 @@ export const TOOLS = [
   {
     name:"HiSkyErase",
     description:"Background Remover",
-    path:"BackgroundRemoverScreen",
+    path:"/BackgroundRemoverScreen",
     key:2,
     icon:RemoveBgIcon,
     image:RemoveBgFront

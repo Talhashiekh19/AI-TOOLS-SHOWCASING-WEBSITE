@@ -5,11 +5,15 @@ const Loader = () => {
   return (
     <Puff
       visible={true}
-      height="50"
-      width="50"
+      height="150"
+      width="150"
       color="white"
       ariaLabel="puff-loading"
-      wrapperStyle={{}}
+      wrapperStyle={{
+        display:"flex",
+        justifyContent:"center",
+        padding:30
+      }}
       wrapperClass=""
     />
   );

@@ -14,11 +14,15 @@ const ToolsScreen = () => {
         }
       />
       <Grid container spacing={2}>
-        {TOOLS.map((tool) => (
-          <Grid size={{ lg: 4, md: 6, xs: 12 }}>
-            <SingleCard key={tool.key} {...tool} />
-          </Grid>
-        ))}
+        {TOOLS.map((tool) => {
+          const { name, description, path, icon, image,key } = tool;
+          const propsObject = { name, description, path, icon, image }
+          return (
+            <Grid size={{ lg: 4, md: 6, xs: 12 }}>
+              <SingleCard key={key} {...propsObject} />
+            </Grid>
+          );
+        })}
       </Grid>
     </Container>
   );

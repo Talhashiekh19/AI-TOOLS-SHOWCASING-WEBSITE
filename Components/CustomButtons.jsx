@@ -7,6 +7,7 @@ import Loader from "./Loader";
 import {
     CloudUpload as CloudUploadIcon,
   } from "@mui/icons-material";
+import { useRouteLoaderData } from "react-router-dom";
 
 export const DownloadButton = ({ handleDownload, text }) => {
   return (
@@ -61,12 +62,8 @@ export const ConvertButton = ({ handleConversion, loaded,text }) => (
     color="error"
     sx={{ p: 2,px:4, mt: 1 }}
   >
-    {loaded ? (
-      <Loader />
-    ) : (
       <Typography className="poppins" variant="h5" textTransform="capitalize">
         {text}
       </Typography>
-    )}
   </Button>
 );

@@ -4,7 +4,12 @@ import { GREY_COLOR, LINK_UNDERLINE_COLOR } from "../Constants";
 import ConvertApi from "convertapi-js";
 import { useResponsivness } from "../Helpers";
 import ReusableScreenContainer from "../Components/ReusableScreenContainer";
-import { ConvertButton, DownloadButton, SelectButton } from "../Components/CustomButtons";
+import {
+  ConvertButton,
+  DownloadButton,
+  SelectButton,
+} from "../Components/CustomButtons";
+import Loader from "../Components/Loader";
 
 // 482889292
 
@@ -92,7 +97,11 @@ const ImageToPdfScreen = () => {
     return (
       <Box display="flex" justifyContent="center">
         {!showDwnlod && (
-          <ConvertButton text="Convert to PDF" handleConversion={handleConversion} loaded={loaded} />
+          <ConvertButton
+            text={loaded ? "Converting..." : "Convert to PDF"}
+            handleConversion={handleConversion}
+            loaded={loaded}
+          />
         )}
         {showDwnlod && (
           <DownloadButton text="Download PDF" handleDownload={handleDownload} />
@@ -135,7 +144,8 @@ const ImageToPdfScreen = () => {
         {selectedAnyThing && (
           <Box width={400}>
             {checkingForSelection && (
-              <TextField
+              <>
+             {loaded ? <Loader/> : <TextField
                 value={value}
                 onChange={(e) => setvalue(e.target.value)}
                 fullWidth
@@ -150,15 +160,18 @@ const ImageToPdfScreen = () => {
                     fontFamily: "poppins",
                   },
                 }}
-              />
+              />}
+              </>
             )}
-            {!checkingForSelection && (
-              <img
-                style={{ width: "100%", maxHeight: 400 }}
-                src={url}
-                alt="Loading..."
-              />
-            )}
+            {!checkingForSelection ? (
+              <>
+                {loaded ? <Loader/> : <img
+                  style={{ width: "100%", maxHeight: 400 }}
+                  src={url}
+                  alt="Loading..."
+                />}
+              </>
+            ) : null}
             <ImageAndTextUIComponent />
           </Box>
         )}

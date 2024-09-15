@@ -14,12 +14,12 @@ const Categories = () => {
         }
       />
       <Grid container spacing={2}>
-        {CATEGORIES.map(({ name, description, image, key }) => (
-          <Grid key={key} size={{ lg: 4, md: 6, xs: 12 }}>
+        {CATEGORIES.map(({ cname, cdescription, cicon, ckey }) => (
+          <Grid key={ckey} size={{ lg: 4, md: 6, xs: 12 }}>
             <CategoryCard
-              name={name}
-              description={description}
-              image={image}
+              name={cname}
+              description={cdescription}
+              image={cicon}
               navigateTo={"Categories"}
             />
           </Grid>

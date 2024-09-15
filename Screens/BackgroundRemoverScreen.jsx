@@ -6,6 +6,7 @@ import {
   DownloadButton,
   ConvertButton,
 } from "../Components/CustomButtons";
+import Loader from "../Components/Loader";
 
 const BackgroundRemoverScreen = () => {
   const inputRef = useRef(null);
@@ -27,7 +28,7 @@ const BackgroundRemoverScreen = () => {
   }
 
   function handleDownloadImage() {
-    downloadButtonRef?.current?.click()
+    downloadButtonRef?.current?.click();
   }
 
   function handleSelectFiles(e) {
@@ -79,7 +80,11 @@ const BackgroundRemoverScreen = () => {
         type="file"
         hidden
       />
-      <a href={imageurl !== "" ? imageurl : ""} ref={downloadButtonRef} download></a>
+      <a
+        href={imageurl !== "" ? imageurl : ""}
+        ref={downloadButtonRef}
+        download
+      ></a>
       <Typography
         textAlign="center"
         className="paytone"
@@ -100,11 +105,17 @@ const BackgroundRemoverScreen = () => {
       </Typography>
       <Box width={400}>
         {imageurl !== "" && (
-          <img
-            style={{ width: "100%", maxHeight: 400 }}
-            src={imageurl}
-            alt="Loading..."
-          />
+          <>
+            {loaded ? (
+              <Loader />
+            ) : (
+              <img
+                style={{ width: "100%", maxHeight: 400 }}
+                src={imageurl}
+                alt="Loading..."
+              />
+            )}
+          </>
         )}
       </Box>
       <Box display="flex" justifyContent="center">
@@ -113,7 +124,7 @@ const BackgroundRemoverScreen = () => {
         )}
         {showcnvrt && !showdwnld && (
           <ConvertButton
-            text="Remove Background"
+            text={loaded ? "Removing Background ..." : "Remove Background"}
             handleConversion={handleRemoval}
             loaded={loaded}
           />

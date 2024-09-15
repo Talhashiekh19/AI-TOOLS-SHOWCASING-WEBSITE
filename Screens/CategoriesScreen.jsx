@@ -1,28 +1,24 @@
 import { Container, Box, Grid2 as Grid, Button } from "@mui/material";
 import React, { useEffect, useRef, useState } from "react";
 import HeadingAndDescription from "../Components/HeadingAndDescription";
-import { CATEGORIES } from "../Constants";
+import { CATEGORIES, TOOLS } from "../Constants";
 import SingleCard from "../Components/SingleCard";
-import {useResponsivness} from "../Helpers";
+import { useResponsivness } from "../Helpers";
 import { useLocation } from "react-router-dom";
 
 const CategoriesScreen = () => {
   const location = useLocation();
-  const {name} = location.state || {};
-  
-  const checkingDownSm = useResponsivness("down","sm");
-  const headings = CATEGORIES.map((c) => {
-    return {
-      key: c.key,
-      name: c.name,
-    };
-  });
+  const { name } = location.state || {};
+
+  const checkingDownSm = useResponsivness("down", "sm");
+
+  const headings = CATEGORIES.map(category => category.cname).filter(Boolean);
 
   const ButtonRef = useRef(null);
 
   useEffect(() => {
-    ButtonRef?.current?.click()
-  },[])
+    ButtonRef?.current?.click();
+  }, []);
 
   return (
     <Container
@@ -33,7 +29,6 @@ const CategoriesScreen = () => {
     >
       <a ref={ButtonRef} href={`#${name}`}></a>
       <HeadingAndDescription
-
         heading={"AI Tools Categories"}
         headingVariant={checkingDownSm ? "h5" : "h3"}
         descVaraint={checkingDownSm ? "body2" : "body1"}
@@ -50,12 +45,16 @@ const CategoriesScreen = () => {
         alignItems="center"
         width="100%"
       />
-      {headings.map(({ name, key }) => {
+      {TOOLS.map((tool,index) => {
+        const { name, description, path, icon, image, key } = tool;
+        const propsObject = { name, description, path, icon, image };
         return (
-          <Box id={name} key={key}>
+          <Box
+          id={headings[index]}
+          key={key}
+          >
             <HeadingAndDescription
-             
-              heading={name}
+              heading={headings[index]}
               headingVariant={"h4"}
               display="flex"
               justifyContent="center"
@@ -64,7 +63,7 @@ const CategoriesScreen = () => {
             <Grid container spacing={2}>
               <Grid size={{ lg: 4, md: 6, xs: 12 }}>
                 <Box width="100%" display="flex" py={6}>
-                  <SingleCard />
+                  <SingleCard key={key} {...propsObject} />
                 </Box>
               </Grid>
             </Grid>
