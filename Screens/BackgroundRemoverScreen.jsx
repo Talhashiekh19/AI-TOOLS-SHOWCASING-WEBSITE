@@ -7,6 +7,7 @@ import {
   ConvertButton,
 } from "../Components/CustomButtons";
 import Loader from "../Components/Loader";
+import { FileNameText } from "./ImageToPdfScreen";
 
 const BackgroundRemoverScreen = () => {
   const inputRef = useRef(null);
@@ -109,11 +110,17 @@ const BackgroundRemoverScreen = () => {
             {loaded ? (
               <Loader />
             ) : (
-              <img
-                style={{ width: "100%", maxHeight: 400 }}
-                src={imageurl}
-                alt="Loading..."
-              />
+              <>
+                {showdwnld ? (
+                  <FileNameText text={files?.name} />
+                ) : (
+                  <img
+                    style={{ width: "100%", maxHeight: 400 }}
+                    src={imageurl}
+                    alt="Loading..."
+                  />
+                )}
+              </>
             )}
           </>
         )}

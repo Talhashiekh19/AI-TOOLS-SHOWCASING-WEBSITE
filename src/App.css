@@ -95,6 +95,10 @@ html{
   transform: translateY(-15px);
 }
 
+.category_card:hover{
+  transform: translateY(-5px);
+}
+
 .category_card{
   width: 100% !important;
   background: hsla(0,0%,100%,.059) !important;
@@ -103,6 +107,7 @@ html{
   position: relative !important;
   overflow: hidden !important;
   cursor: pointer !important;
+  transition: transform 0.1s linear !important;
 }
 
 

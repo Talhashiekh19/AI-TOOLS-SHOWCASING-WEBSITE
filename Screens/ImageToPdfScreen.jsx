@@ -11,6 +11,19 @@ import {
 } from "../Components/CustomButtons";
 import Loader from "../Components/Loader";
 
+export const FileNameText = ({ text }) => {
+  return (
+    <Typography
+      color="white"
+      textAlign="center"
+      className="poppins"
+      variant="h5"
+    >
+      {text}
+    </Typography>
+  );
+};
+
 // 482889292
 
 const ImageToPdfScreen = () => {
@@ -59,7 +72,7 @@ const ImageToPdfScreen = () => {
         params
       );
       setloaded(false);
-      setpdf(result.dto.Files[0]?.Url);
+      setpdf(result.dto.Files[0]);
       setshowDwnlod(true);
     } catch (e) {
       setloaded(false);
@@ -121,7 +134,7 @@ const ImageToPdfScreen = () => {
         type="file"
         hidden
       />
-      <a href={pdf} ref={downloadButtonRef} download></a>
+      <a href={pdf?.Url} ref={downloadButtonRef} download></a>
       <ReusableScreenContainer>
         <Typography
           textAlign="center"
@@ -145,31 +158,54 @@ const ImageToPdfScreen = () => {
           <Box width={400}>
             {checkingForSelection && (
               <>
-             {loaded ? <Loader/> : <TextField
-                value={value}
-                onChange={(e) => setvalue(e.target.value)}
-                fullWidth
-                multiline
-                rows={15}
-                sx={{ border: `1px solid ${GREY_COLOR}`, color: "white" }}
-                placeholder="Enter Text to convert"
-                InputProps={{
-                  style: {
-                    color: "white",
-                    fontSize: 20,
-                    fontFamily: "poppins",
-                  },
-                }}
-              />}
+                {loaded ? (
+                  <Loader />
+                ) : (
+                  <>
+                    {showDwnlod ? (
+                      <FileNameText text={pdf?.FileName} />
+                    ) : (
+                      <TextField
+                        value={value}
+                        onChange={(e) => setvalue(e.target.value)}
+                        fullWidth
+                        multiline
+                        rows={8}
+                        sx={{
+                          border: `1px solid ${GREY_COLOR}`,
+                          color: "white",
+                        }}
+                        placeholder="Enter Text to convert"
+                        InputProps={{
+                          style: {
+                            color: "white",
+                            fontSize: 20,
+                            fontFamily: "poppins",
+                          },
+                        }}
+                      />
+                    )}
+                  </>
+                )}
               </>
             )}
             {!checkingForSelection ? (
               <>
-                {loaded ? <Loader/> : <img
-                  style={{ width: "100%", maxHeight: 400 }}
-                  src={url}
-                  alt="Loading..."
-                />}
+                {loaded ? (
+                  <Loader />
+                ) : (
+                  <>
+                    {showDwnlod ? (
+                      <FileNameText text={pdf?.FileName} />
+                    ) : (
+                      <img
+                        style={{ width: "100%", maxHeight: 400 }}
+                        src={url}
+                        alt="Loading..."
+                      />
+                    )}
+                  </>
+                )}
               </>
             ) : null}
             <ImageAndTextUIComponent />
@@ -182,7 +218,7 @@ const ImageToPdfScreen = () => {
           />
           <SelectButton
             onClick={() => handleSelection("Text")}
-            text="Select Text"
+            text="Enter Text"
           />
         </Box>
       </ReusableScreenContainer>
