@@ -9,6 +9,9 @@ import ConvertApiIcon from "/ConvertApi.png";
 import ConvertApiImage from "/Convert_Api_Image.png";
 import RemoveBgIcon from "/remove-bg-icon.png";
 import RemoveBgFront from "/Remove-bg-front.png";
+import HuggingFaceIcon from "/hugging-face-icon.svg";
+import HuggingFaceFront from "/hugging-face-front.png";
+
 
 
 import {FacebookRounded,Twitter,YouTube,Instagram,LinkedIn} from "@mui/icons-material";
@@ -127,7 +130,7 @@ export const TOOLS = [
     description:"Background Generation",
     path:"/BackgroundGeneratorScreen",
     key:3,
-    icon:RemoveBgIcon,
-    image:RemoveBgFront
+    icon:HuggingFaceIcon,
+    image:HuggingFaceFront
   },
 ]

@@ -132,15 +132,3 @@ html{
   background: #ffffff0f !important;
 }
 
-.generated_bg_box{
-  position: relative !important;
-  isolation: isolate;
-}
-.generated_bg_box::after{
-  position: absolute;
-  content: "";
-  height: 100% !important;
-  width: 100% !important;
-  background-color: rgba(0,0,0,.4) !important;
-  z-index: -1;
-}
