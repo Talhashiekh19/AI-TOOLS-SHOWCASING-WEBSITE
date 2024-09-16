@@ -2,6 +2,7 @@
 
 :root {
   --LINK-UNDERLINE-COLOR: #322f87;
+  --GREY-COLOR: hsla(0,0%,100%,.7);
 }
 
 html{
@@ -26,7 +27,23 @@ html{
   transform: scaleX(0);
 }
 
-.nav_link:hover::after {
+.nav_link:hover::after{
+  transform: scaleX(1) !important;
+}
+
+.nav_link.active{
+  color: white !important;
+}
+
+.nav_link:not(.active){
+  color: var(--GREY-COLOR) !important;
+}
+
+.nav_link:hover{
+  color: white !important;
+}
+
+.nav_link.active::after {
   transform: scaleX(1);
 }
 
@@ -113,4 +130,17 @@ html{
 
 .footer {
   background: #ffffff0f !important;
+}
+
+.generated_bg_box{
+  position: relative !important;
+  isolation: isolate;
+}
+.generated_bg_box::after{
+  position: absolute;
+  content: "";
+  height: 100% !important;
+  width: 100% !important;
+  background-color: rgba(0,0,0,.4) !important;
+  z-index: -1;
 }

@@ -122,4 +122,12 @@ export const TOOLS = [
     icon:RemoveBgIcon,
     image:RemoveBgFront
   },
+  {
+    name:"SkyGeneration",
+    description:"Background Generation",
+    path:"/BackgroundGeneratorScreen",
+    key:3,
+    icon:RemoveBgIcon,
+    image:RemoveBgFront
+  },
 ]

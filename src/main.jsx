@@ -5,6 +5,8 @@ import "./App.css";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import { pages } from "../Constants.jsx";
 
+
+const BackgroundGeneratorScreen = lazy(() => import("../Screens/BackgroundGeneratorScreen.jsx"));
 const BackgroundRemoverScreen = lazy(() => import("../Screens/BackgroundRemoverScreen.jsx"));
 const ImageToPdfScreen = lazy(() => import("../Screens/ImageToPdfScreen.jsx"))
 const CategoriesScreen = lazy(() => import("../Screens/CategoriesScreen.jsx"))
@@ -42,6 +44,10 @@ const router = createBrowserRouter([
       {
         path:"BackgroundRemoverScreen",
         element: <BackgroundRemoverScreen/>,
+      },
+      {
+        path:"BackgroundGeneratorScreen",
+        element: <BackgroundGeneratorScreen/>,
       },
     ],
   },

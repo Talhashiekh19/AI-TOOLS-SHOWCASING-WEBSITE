@@ -6,9 +6,9 @@ import {
   Container,
   IconButton,
 } from "@mui/material";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { pages } from "../Constants";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import MenuOpenIcon from "@mui/icons-material/MenuOpen";
 import SideBar from "./SideBar";
 import CloseIcon from "@mui/icons-material/Close";
@@ -19,6 +19,17 @@ const Navbar = ({handleNavigate}) => {
   const checkingSm = useResponsivness("down", "sm");
   const [openDrawer, setopenDrawer] = useState(false);
   const navigate = useNavigate();
+  const [currentlocation,setcurrentlocation] = useState("Home");
+  const location = useLocation();
+
+  useEffect(() => {
+    const activelocation = location.pathname.split("/")[1];
+    if(activelocation === ""){
+      setcurrentlocation("Home")
+    }else {
+      setcurrentlocation(activelocation);
+    }
+  },[location.pathname]);
 
   return (
     <>
@@ -63,8 +74,9 @@ const Navbar = ({handleNavigate}) => {
               </IconButton>
             ) : (
               <Box component="div" display="flex" gap={checkingSm ? 1 : 6}>
-                {pages.map((link) => (
-                  <Button
+                {pages.map((link) => {
+                  const checkingActivness = currentlocation === link;
+                  return <Button
                     onClick={() => handleNavigate(link, navigate)}
                     color="primary"
                     variant="text"
@@ -72,7 +84,7 @@ const Navbar = ({handleNavigate}) => {
                   >
                     <Typography
                       position="relative"
-                      className="poppins nav_link"
+                      className={`poppins nav_link ${checkingActivness ? "active" : ""}`}
                       textTransform="capitalize"
                       fontSize={checkingSm ? "1rem" : "1.2rem"}
                       color="white"
@@ -80,7 +92,7 @@ const Navbar = ({handleNavigate}) => {
                       {link}
                     </Typography>
                   </Button>
-                ))}
+})}
               </Box>
             )}
           </Container>
