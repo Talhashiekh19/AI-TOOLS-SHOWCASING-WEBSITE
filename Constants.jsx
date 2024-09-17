@@ -11,6 +11,8 @@ import RemoveBgIcon from "/remove-bg-icon.png";
 import RemoveBgFront from "/Remove-bg-front.png";
 import HuggingFaceIcon from "/hugging-face-icon.svg";
 import HuggingFaceFront from "/hugging-face-front.png";
+import OpenAIIcon from "/open-ai-icon.png";
+import OpenAIFront from "/open-ai-front.png";
 
 
 
@@ -132,5 +134,13 @@ export const TOOLS = [
     key:3,
     icon:HuggingFaceIcon,
     image:HuggingFaceFront
+  },
+  {
+    name:"HiSkyVisuals",
+    description:"Image Generator",
+    path:"/ImageGenerationScreen",
+    key:4,
+    icon:OpenAIIcon,
+    image:OpenAIFront
   },
 ]
