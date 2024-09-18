@@ -3,6 +3,7 @@ import { Suspense, useEffect } from "react";
 import Navbar from "../Components/Navbar";
 import { Outlet, useLocation, useNavigate } from "react-router-dom";
 import Footer from "../Components/Footer";
+import LoadingScreen from "../Components/LoadingScreen";
 
 function App() {
   const navigate = useNavigate();
@@ -35,7 +36,7 @@ function App() {
   }
 
   return (
-    <Suspense>
+    <Suspense fallback={<LoadingScreen/>}>
       <Box className="background">
         <Navbar handleNavigate={handleNavigate} />
         <CssBaseline />

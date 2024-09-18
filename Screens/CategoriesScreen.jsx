@@ -34,10 +34,10 @@ const CategoriesScreen = () => {
         descVaraint={checkingDownSm ? "body2" : "body1"}
         center={true}
         description={
-          <div style={{ marginTop: 20 }}>
+          <>
             Streamline your search and find the best AI solutions to enhance
             your operations <br /> improve customer experiences and drive growth
-          </div>
+          </>
         }
         display="flex"
         justifyContent="center"

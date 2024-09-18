@@ -13,6 +13,12 @@ import HuggingFaceIcon from "/hugging-face-icon.svg";
 import HuggingFaceFront from "/hugging-face-front.png";
 import OpenAIIcon from "/open-ai-icon.png";
 import OpenAIFront from "/open-ai-front.png";
+import generatedimg1 from "/generated-img-1.jpg";
+import generatedimg2 from "/generated-img-2.jpg";
+import generatedimg3 from "/generated-img-3.jpg";
+import generatedimg4 from "/generated-img-4.jpg";
+import generatedimg5 from "/generated-img-5.jpg";
+import generatedimg6 from "/generated-img-6.jpg";
 
 
 
@@ -112,6 +118,14 @@ export const SOCIAL_LINKS = [
 
 export const TOOLS = [
   {
+    name:"HiSkyVisuals",
+    description:"Image Generator",
+    path:"/ImageGenerationScreen",
+    key:4,
+    icon:OpenAIIcon,
+    image:OpenAIFront
+  },
+  {
     name:"HiSkyPDF",
     description:"PDF Converter",
     path:"/ImageToPdfScreen",
@@ -135,12 +149,31 @@ export const TOOLS = [
     icon:HuggingFaceIcon,
     image:HuggingFaceFront
   },
-  {
-    name:"HiSkyVisuals",
-    description:"Image Generator",
-    path:"/ImageGenerationScreen",
-    key:4,
-    icon:OpenAIIcon,
-    image:OpenAIFront
-  },
 ]
+
+export const defaultImagesArray = [
+  {
+    image: generatedimg1,
+    key: 1,
+  },
+  {
+    image: generatedimg2,
+    key: 2,
+  },
+  {
+    image: generatedimg3,
+    key: 3,
+  },
+  {
+    image: generatedimg4,
+    key: 4,
+  },
+  {
+    image: generatedimg5,
+    key: 5,
+  },
+  {
+    image: generatedimg6,
+    key: 6,
+  },
+];
