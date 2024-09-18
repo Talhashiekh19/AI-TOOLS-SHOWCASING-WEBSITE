@@ -48,3 +48,8 @@ function App() {
 }
 
 export default App;
+
+
+// https://mockuuups.studio/developers/fb5CMh6DaKMMRqYA97aEZF/#api-keys
+
+// https://mediamodifier.com/dashboard/mockup-api
