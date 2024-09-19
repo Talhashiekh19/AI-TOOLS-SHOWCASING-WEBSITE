@@ -10,7 +10,7 @@ const VideoGenerationScreen = () => {
 
   }
 
-
+  // VITE_SECRET_VIDEO_GENERATION_KEY=fbb83a999amsh8f19b6b6423c50fp154038jsnc1474aa6ca11
   // r8_MAvewTwWFfEmX2252KIISa7XnPgl09h1JTySI
 
   return (
