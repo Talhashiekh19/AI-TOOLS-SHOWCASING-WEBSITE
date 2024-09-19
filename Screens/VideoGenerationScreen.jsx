@@ -1,9 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import ReusableScreenContainer from "../Components/ReusableScreenContainer";
 import HeadingAndDesc from "../Components/ToolsHeadingAndDesc";
 import ImagePromptInputAndButton from "../Components/ImagePromptInputAndButton";
+import { Player } from "video-react";
 
 const VideoGenerationScreen = () => {
+
+  const [prompt,setprompt] = useState("");
 
   async function handleVideoGeneration(){
 
@@ -28,13 +31,12 @@ const VideoGenerationScreen = () => {
           "Fierce warrior in futuristic armor, standing tall under a stormy sky."
         }
       />
-      <Player
+      {/* <Player
           playsInline
-          poster={Image}
           fluid
           autoPlay={true}
           src="https://media.w3.org/2010/05/sintel/trailer_hd.mp4"
-        />
+        /> */}
     </ReusableScreenContainer>
   );
 };
