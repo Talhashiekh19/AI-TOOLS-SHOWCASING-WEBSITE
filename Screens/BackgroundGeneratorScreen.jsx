@@ -5,6 +5,7 @@ import { LINK_UNDERLINE_COLOR } from "../Constants";
 import Loader from "../Components/Loader";
 import { DownloadButton } from "../Components/CustomButtons";
 import ImagePromptInputAndButton from "../Components/ImagePromptInputAndButton";
+import HeadingAndDesc from "../Components/ToolsHeadingAndDesc";
 
 export async function query(data) {
   try {
@@ -72,23 +73,15 @@ const BackgroundGeneratorScreen = () => {
         ref={downloadButtonRef}
         download
       ></a>
-      <Typography
-        textAlign="center"
-        className="paytone"
-        variant="h4"
-        color="white"
-      >
-        AI Background
-        <span className="colorfull_text"> Generation </span>
-      </Typography>
-      <Typography
-        textAlign="center"
-        className="mulish"
-        variant="h6"
-        color="white"
-      >
-        Elevate your designs with AI-powered background generation
-      </Typography>
+       <HeadingAndDesc
+          heading={
+            <p>
+              AI Background
+              <span className="colorfull_text"> Generation </span>
+            </p>
+          }
+          description="Elevate your designs with AI-powered background generation"
+        />
       <ImagePromptInputAndButton
         value={value}
         setvalue={setvalue}

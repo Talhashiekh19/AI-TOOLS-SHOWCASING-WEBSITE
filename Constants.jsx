@@ -13,6 +13,8 @@ import HuggingFaceIcon from "/hugging-face-icon.svg";
 import HuggingFaceFront from "/hugging-face-front.png";
 import OpenAIIcon from "/open-ai-icon.png";
 import OpenAIFront from "/open-ai-front.png";
+import RapidApiIcon from "/rapid-api-icon.png";
+import RapidApiFront from "/rapid-api-front.png";
 import generatedimg1 from "/generated-img-1.jpg";
 import generatedimg2 from "/generated-img-2.jpg";
 import generatedimg3 from "/generated-img-3.jpg";
@@ -148,6 +150,14 @@ export const TOOLS = [
     key:3,
     icon:HuggingFaceIcon,
     image:HuggingFaceFront
+  },
+  {
+    name:"HiSkyVid",
+    description:"Video Generation",
+    path:"/VideoGenerationScreen",
+    key:5,
+    icon:RapidApiIcon,
+    image:RapidApiFront
   },
 ]
 

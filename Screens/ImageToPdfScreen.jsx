@@ -10,6 +10,7 @@ import {
   SelectButton,
 } from "../Components/CustomButtons";
 import Loader from "../Components/Loader";
+import HeadingAndDesc from "../Components/ToolsHeadingAndDesc";
 
 export const FileNameText = ({ text }) => {
   return (
@@ -136,24 +137,16 @@ const ImageToPdfScreen = () => {
       />
       <a href={pdf?.Url} ref={downloadButtonRef} download></a>
       <ReusableScreenContainer>
-        <Typography
-          textAlign="center"
-          className="paytone"
-          variant="h4"
-          color="white"
-        >
-          Image & Text to {checkingSMDown && <br />}{" "}
-          <span className="colorfull_text"> PDF Converter </span>
-        </Typography>
-        <Typography
-          textAlign="center"
-          className="mulish"
-          variant="h6"
-          color="white"
-        >
-          Seamlessly convert text and images into high-quality PDFs with
-          HiSkyPDF.
-        </Typography>
+        <HeadingAndDesc
+          heading={
+            <p>
+              Image & Text to {checkingSMDown && <br />}{" "}
+              <span className="colorfull_text"> PDF Converter </span>
+            </p>
+          }
+          description="Seamlessly convert text and images into high-quality PDFs with
+          HiSkyPDF."
+        />
         {selectedAnyThing && (
           <Box width={400}>
             {checkingForSelection && (

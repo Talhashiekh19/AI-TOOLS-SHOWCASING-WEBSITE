@@ -11,6 +11,7 @@ import {
 import ImagePromptInputAndButton from "../Components/ImagePromptInputAndButton";
 import { defaultImagesArray, GREY_COLOR } from "../Constants";
 import { GetApp as GetAppIcon } from "@mui/icons-material";
+import HeadingAndDesc from "../Components/ToolsHeadingAndDesc";
 
 const ImageGenerationScreen = () => {
   const [prompt, setprompt] = useState("");
@@ -132,23 +133,15 @@ const ImageGenerationScreen = () => {
   return (
     <>
       <ReusableScreenContainer>
-        <Typography
-          textAlign="center"
-          className="paytone"
-          variant="h4"
-          color="white"
-        >
-          AI Image
-          <span className="colorfull_text"> Generation </span>
-        </Typography>
-        <Typography
-          textAlign="center"
-          className="mulish"
-          variant="h6"
-          color="white"
-        >
-          Unleash Creativity with AI-Powered Image Generation
-        </Typography>
+      <HeadingAndDesc
+        heading={
+          <p>
+            AI Image
+            <span className="colorfull_text"> Generation </span>
+          </p>
+        }
+        description="Unleash Creativity with AI-Powered Image Generation"
+      />
         <ImagePromptInputAndButton
           value={prompt}
           setvalue={setprompt}

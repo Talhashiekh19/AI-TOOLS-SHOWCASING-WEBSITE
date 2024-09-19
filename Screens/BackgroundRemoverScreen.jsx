@@ -8,6 +8,7 @@ import {
 } from "../Components/CustomButtons";
 import Loader from "../Components/Loader";
 import { FileNameText } from "./ImageToPdfScreen";
+import HeadingAndDesc from "../Components/ToolsHeadingAndDesc";
 
 const BackgroundRemoverScreen = () => {
   const inputRef = useRef(null);
@@ -86,24 +87,17 @@ const BackgroundRemoverScreen = () => {
         ref={downloadButtonRef}
         download
       ></a>
-      <Typography
-        textAlign="center"
-        className="paytone"
-        variant="h4"
-        color="white"
-      >
-        Image
-        <span className="colorfull_text"> Background Remover </span>
-      </Typography>
-      <Typography
-        textAlign="center"
-        className="mulish"
-        variant="h6"
-        color="white"
-      >
-        Effortlessly remove backgrounds from your images for a clean and
-        professional look.
-      </Typography>
+
+      <HeadingAndDesc
+        heading={
+          <p>
+            Image
+            <span className="colorfull_text"> Background Remover </span>
+          </p>
+        }
+        description="Effortlessly remove backgrounds from your images for a clean and
+        professional look."
+      />
       <Box width={400}>
         {imageurl !== "" && (
           <>
