@@ -28,13 +28,13 @@ const VideoGenerationScreen = () => {
           "Fierce warrior in futuristic armor, standing tall under a stormy sky."
         }
       />
-      {/* <Player
+      <Player
           playsInline
           poster={Image}
           fluid
           autoPlay={true}
           src="https://media.w3.org/2010/05/sintel/trailer_hd.mp4"
-        /> */}
+        />
     </ReusableScreenContainer>
   );
 };
