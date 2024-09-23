@@ -15,6 +15,8 @@ import OpenAIIcon from "/open-ai-icon.png";
 import OpenAIFront from "/open-ai-front.png";
 import RapidApiIcon from "/rapid-api-icon.png";
 import RapidApiFront from "/rapid-api-front.png";
+import MockupStudioIcon from "/mockup-studio-icon.png";
+import MockupStudioFront from "/mockup-generator-front.png";
 import generatedimg1 from "/generated-img-1.jpg";
 import generatedimg2 from "/generated-img-2.jpg";
 import generatedimg3 from "/generated-img-3.jpg";
@@ -158,6 +160,14 @@ export const TOOLS = [
     key:5,
     icon:RapidApiIcon,
     image:RapidApiFront
+  },
+  {
+    name:"HiSkyMock",
+    description:"Mockups Generator",
+    path:"/MockupGenerationScreen",
+    key:6,
+    icon:MockupStudioIcon,
+    image:MockupStudioFront
   },
 ]
 

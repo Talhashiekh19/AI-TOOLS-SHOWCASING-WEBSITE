@@ -1,10 +1,12 @@
 import { lazy, StrictMode } from "react";
 import { createRoot } from "react-dom/client";
-import App from "./App.jsx";
-import "./App.css";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import { pages } from "../Constants.jsx";
 
+import App from "./App.jsx";
+import "./App.css";
+
+const MockupGeneratorScreen = lazy(() => import("../Screens/MockupGeneratorScreen.jsx"))
 const VideoGenerationScreen = lazy(() => import("../Screens/VideoGenerationScreen.jsx"));
 const ImageGenerationScreen = lazy(() => import("../Screens/ImageGenerationScreen.jsx"));
 const BackgroundGeneratorScreen = lazy(() => import("../Screens/BackgroundGeneratorScreen.jsx"));
@@ -57,6 +59,10 @@ const router = createBrowserRouter([
       {
         path:"VideoGenerationScreen",
         element: <VideoGenerationScreen/>,
+      },
+      {
+        path:"MockupGenerationScreen",
+        element: <MockupGeneratorScreen/>,
       },
     ],
   },
