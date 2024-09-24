@@ -23,7 +23,7 @@ function App() {
       navigateTo("/");
       setTimeout(() => {
         window.scrollTo({ top: 700, left: 0, behavior: "smooth" });
-      }, 1000);
+      }, 500);
     }
   }
 

@@ -24,13 +24,15 @@ import generatedimg4 from "/generated-img-4.jpg";
 import generatedimg5 from "/generated-img-5.jpg";
 import generatedimg6 from "/generated-img-6.jpg";
 
-
-
-import {FacebookRounded,Twitter,YouTube,Instagram,LinkedIn} from "@mui/icons-material";
-
+import {
+  FacebookRounded,
+  Twitter,
+  YouTube,
+  Instagram,
+  LinkedIn,
+} from "@mui/icons-material";
 
 export const pages = ["Home", "Categories", "Tools"];
-
 
 export const LINK_UNDERLINE_COLOR = "#625df5";
 export const GREY_COLOR = "hsla(0,0%,100%,.7)";
@@ -89,7 +91,7 @@ export const CATEGORIES = [
   },
 ];
 
-const iconStyles = {fontSize:25,color:'white'}
+const iconStyles = { fontSize: 25, color: "white" };
 
 export const SOCIAL_LINKS = [
   {
@@ -98,78 +100,86 @@ export const SOCIAL_LINKS = [
     key: 1,
   },
   {
-    Icon: <Twitter sx={iconStyles}/>,
+    Icon: <Twitter sx={iconStyles} />,
     link: "",
     key: 2,
   },
   {
-    Icon: <Instagram sx={iconStyles}/>,
+    Icon: <Instagram sx={iconStyles} />,
     link: "https://www.instagram.com/hisky_tech?igsh=MzE1aG9rbDdpMWtp",
     key: 3,
   },
   {
-    Icon: <YouTube sx={iconStyles}/>,
+    Icon: <YouTube sx={iconStyles} />,
     link: "",
     key: 4,
   },
   {
-    Icon: <LinkedIn sx={iconStyles}/>,
+    Icon: <LinkedIn sx={iconStyles} />,
     link: "https://www.linkedin.com/company/hiskytech/posts/?feedView=all",
     key: 5,
   },
 ];
 
-
 export const TOOLS = [
   {
-    name:"HiSkyVisuals",
-    description:"Image Generator",
-    path:"/ImageGenerationScreen",
-    key:4,
-    icon:OpenAIIcon,
-    image:OpenAIFront
+    name: "HiSkyVisuals",
+    description: "Image Generator",
+    path: "/ImageGenerationScreen",
+    key: 4,
+    icon: OpenAIIcon,
+    image: OpenAIFront,
   },
   {
-    name:"HiSkyPDF",
-    description:"PDF Converter",
-    path:"/ImageToPdfScreen",
-    key:1,
-    icon:ConvertApiIcon,
-    image:ConvertApiImage
+    name: "HiSkyIcons",
+    description: "Icons Generator",
+    path: "/IconGenerationScreen",
+    key: 7,
+    icon: MockupStudioIcon,
+    image: MockupStudioFront,
   },
   {
-    name:"HiSkyErase",
-    description:"Background Remover",
-    path:"/BackgroundRemoverScreen",
-    key:2,
-    icon:RemoveBgIcon,
-    image:RemoveBgFront
+    name: "HiSkyPDF",
+    description: "PDF Converter",
+    path: "/ImageToPdfScreen",
+    key: 1,
+    icon: ConvertApiIcon,
+    image: ConvertApiImage,
   },
   {
-    name:"SkyGeneration",
-    description:"Background Generation",
-    path:"/BackgroundGeneratorScreen",
-    key:3,
-    icon:HuggingFaceIcon,
-    image:HuggingFaceFront
+    name: "HiSkyVid",
+    description: "Video Generation",
+    path: "/VideoGenerationScreen",
+    key: 5,
+    icon: RapidApiIcon,
+    image: RapidApiFront,
   },
   {
-    name:"HiSkyVid",
-    description:"Video Generation",
-    path:"/VideoGenerationScreen",
-    key:5,
-    icon:RapidApiIcon,
-    image:RapidApiFront
+    name: "SkyGeneration",
+    description: "Background Generation",
+    path: "/BackgroundGeneratorScreen",
+    key: 3,
+    icon: HuggingFaceIcon,
+    image: HuggingFaceFront,
   },
   {
-    name:"HiSkyMock",
-    description:"Mockups Generator",
-    path:"/MockupGenerationScreen",
-    key:6,
-    icon:MockupStudioIcon,
-    image:MockupStudioFront
+    name: "HiSkyErase",
+    description: "Background Remover",
+    path: "/BackgroundRemoverScreen",
+    key: 2,
+    icon: RemoveBgIcon,
+    image: RemoveBgFront,
   },
-]
+
+  {
+    name: "HiSkyMock",
+    description: "Mockups Generator",
+    path: "/MockupGenerationScreen",
+    key: 6,
+    icon: MockupStudioIcon,
+    image: MockupStudioFront,
+  },
+];
 
 export const defaultImagesArray = [
   {

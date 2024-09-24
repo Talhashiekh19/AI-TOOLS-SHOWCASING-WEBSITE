@@ -6,6 +6,7 @@ import { pages } from "../Constants.jsx";
 import App from "./App.jsx";
 import "./App.css";
 
+const IconGenerationScreen = lazy(() => import("../Screens/IconGenerationScreen.jsx"))
 const MockupGeneratorScreen = lazy(() => import("../Screens/MockupGeneratorScreen.jsx"))
 const VideoGenerationScreen = lazy(() => import("../Screens/VideoGenerationScreen.jsx"));
 const ImageGenerationScreen = lazy(() => import("../Screens/ImageGenerationScreen.jsx"));
@@ -64,6 +65,10 @@ const router = createBrowserRouter([
         path:"MockupGenerationScreen",
         element: <MockupGeneratorScreen/>,
       },
+      {
+        path:"IconGenerationScreen",
+        element: <IconGenerationScreen/>,
+      }
     ],
   },
 ]);
