@@ -17,12 +17,22 @@ import RapidApiIcon from "/rapid-api-icon.png";
 import RapidApiFront from "/rapid-api-front.png";
 import MockupStudioIcon from "/mockup-studio-icon.png";
 import MockupStudioFront from "/mockup-generator-front.png";
+import IconGeneratorIcon from "/icon-generator-icon.png";
+import IconGeneratorFront from "/icon-generator-front.png";
 import generatedimg1 from "/generated-img-1.jpg";
 import generatedimg2 from "/generated-img-2.jpg";
 import generatedimg3 from "/generated-img-3.jpg";
 import generatedimg4 from "/generated-img-4.jpg";
 import generatedimg5 from "/generated-img-5.jpg";
 import generatedimg6 from "/generated-img-6.jpg";
+import defaulticon1 from "/default-icon-1.jpg";
+import defaulticon2 from "/default-icon-2.jpg";
+import defaulticon3 from "/default-icon-3.jpg";
+import defaulticon4 from "/default-icon-4.jpg";
+import defaulticon5 from "/default-icon-5.jpg";
+import defaulticon6 from "/default-icon-6.jpg";
+import defaulticon7 from "/default-icon-7.jpg";
+import defaulticon8 from "/default-icon-8.jpg";
 
 import {
   FacebookRounded,
@@ -38,6 +48,41 @@ export const LINK_UNDERLINE_COLOR = "#625df5";
 export const GREY_COLOR = "hsla(0,0%,100%,.7)";
 
 export const IMAGE_SIZE = 100;
+
+export const DEFAULT_ICONS = [
+  {
+    item:defaulticon1,
+    key:1
+  },
+  {
+    item:defaulticon2,
+    key:2
+  },
+  {
+    item:defaulticon3,
+    key:3
+  },
+  {
+    item:defaulticon4,
+    key:4
+  },
+  {
+    item:defaulticon5,
+    key:5
+  },
+  {
+    item:defaulticon6,
+    key:6
+  },
+  {
+    item:defaulticon7,
+    key:7
+  },
+  {
+    item:defaulticon8,
+    key:8
+  },
+]
 
 export const CATEGORIES = [
   {
@@ -135,8 +180,8 @@ export const TOOLS = [
     description: "Icons Generator",
     path: "/IconGenerationScreen",
     key: 7,
-    icon: MockupStudioIcon,
-    image: MockupStudioFront,
+    icon: IconGeneratorIcon,
+    image: IconGeneratorFront,
   },
   {
     name: "HiSkyPDF",
@@ -183,27 +228,64 @@ export const TOOLS = [
 
 export const defaultImagesArray = [
   {
-    image: generatedimg1,
+    item: generatedimg1,
     key: 1,
   },
   {
-    image: generatedimg2,
+    item: generatedimg2,
     key: 2,
   },
   {
-    image: generatedimg3,
+    item: generatedimg3,
     key: 3,
   },
   {
-    image: generatedimg4,
+    item: generatedimg4,
     key: 4,
   },
   {
-    image: generatedimg5,
+    item: generatedimg5,
     key: 5,
   },
   {
-    image: generatedimg6,
+    item: generatedimg6,
     key: 6,
   },
 ];
+
+
+export async function handleGeneration(n,seturls,prompt) {
+  const url = "https://ai-image-generator3.p.rapidapi.com/generate";
+  let count = 1;
+  const options = {
+    method: "POST",
+    headers: {
+      "x-rapidapi-key": import.meta.env.VITE_SECRET_IMAGE_GENERATION_KEY,
+      "x-rapidapi-host": "ai-image-generator3.p.rapidapi.com",
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      prompt,
+      page: 1,
+    }),
+  };
+
+  try {
+    const response = await fetch(url, options);
+    const result = await response.json();
+    const array = result.results.images.slice(0, n);
+    let newArray = [];
+    array.forEach((item) => {
+      let object = {
+        item,
+        key: count++,
+      };
+      newArray.push(object);
+      if (newArray.length === array.length) {
+        seturls(newArray);
+      }
+    });
+  } catch (error) {
+    console.error(error);
+  }
+}

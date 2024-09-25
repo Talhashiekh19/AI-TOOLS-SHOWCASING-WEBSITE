@@ -3,13 +3,20 @@ import ReusableScreenContainer from "../Components/ReusableScreenContainer";
 import HeadingAndDesc from "../Components/ToolsHeadingAndDesc";
 import { SelectButton } from "../Components/CustomButtons";
 import { Container, Grid2 as Grid } from "@mui/material";
-import { GridContainer, ImageGrid, SkeletonLoader } from "./ImageGenerationScreen";
+import {
+  GridContainer,
+  ImageGrid,
+  SkeletonLoader,
+  IMAGES_SIZE,
+  IMAGE_HEIGHT,
+} from "./ImageGenerationScreen";
 
 const NUMBER_OF_MOCKUPS = 9;
 
 export default function MockupGeneratorScreen() {
   const [mockups, setmockups] = useState([]);
   const [loaded, setloaded] = useState(false);
+
   const ARRAY = Array(NUMBER_OF_MOCKUPS)
     .fill(null)
     .map((_, i) => i);
@@ -57,12 +64,26 @@ export default function MockupGeneratorScreen() {
           {!loaded ? (
             <>
               {mockups?.map(({ thumbnail, id }) => {
-                return <ImageGrid key={id} image={thumbnail} />
+                return (
+                  <ImageGrid
+                    width={IMAGE_HEIGHT}
+                    size={IMAGES_SIZE}
+                    height={IMAGE_HEIGHT}
+                    key={id}
+                    image={thumbnail}
+                  />
+                );
               })}
             </>
           ) : (
             <>
-              {ARRAY.map((key) => <SkeletonLoader key={key}/>)}
+              {ARRAY.map((key) => (
+                <SkeletonLoader
+                  size={IMAGES_SIZE}
+                  height={IMAGE_HEIGHT}
+                  key={key}
+                />
+              ))}
             </>
           )}
         </GridContainer>

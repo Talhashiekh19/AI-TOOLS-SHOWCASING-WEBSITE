@@ -9,33 +9,32 @@ import {
   IconButton,
 } from "@mui/material";
 import ImagePromptInputAndButton from "../Components/ImagePromptInputAndButton";
-import { defaultImagesArray, GREY_COLOR } from "../Constants";
+import { defaultImagesArray, GREY_COLOR, handleGeneration } from "../Constants";
 import { GetApp as GetAppIcon } from "@mui/icons-material";
 import HeadingAndDesc from "../Components/ToolsHeadingAndDesc";
 
-const IMAGE_HEIGHT = 300;
+export const IMAGE_HEIGHT = 300;
 
-const ImagesGrid = ({ children, ...rest }) => {
+export const IMAGES_SIZE = { xs: 10, md: 5, lg: 4 };
+
+const ImagesGrid = ({ children, size, ...rest }) => {
   return (
-    <Grid
-      sx={{ bgcolor: GREY_COLOR }}
-      size={{ xs: 10, md: 5, lg: 4 }}
-      {...rest}
-    >
+    <Grid sx={{ bgcolor: GREY_COLOR }} size={size} {...rest}>
       {children}
     </Grid>
   );
 };
 
-export const ImageGrid = ({ image }) => {
+export const ImageGrid = ({ image, width, height, size }) => {
   const [showdwnld, setshowdwnld] = useState(false);
 
   return (
     <ImagesGrid
+      size={size}
       onMouseOver={() => setshowdwnld(true)}
       onMouseLeave={() => setshowdwnld(false)}
     >
-      <Box height={IMAGE_HEIGHT} position="relative">
+      <Box height={height} position="relative">
         <img
           src={image}
           alt="Loading..."
@@ -51,10 +50,10 @@ export const ImageGrid = ({ image }) => {
   );
 };
 
-export const SkeletonLoader = () => {
+export const SkeletonLoader = ({ size, height }) => {
   return (
-    <ImagesGrid>
-      <Box height={IMAGE_HEIGHT}>
+    <ImagesGrid size={size}>
+      <Box height={height}>
         <Skeleton
           animation="wave"
           sx={{ bgcolor: "grey" }}
@@ -124,8 +123,6 @@ const ImageGenerationScreen = () => {
   const [loading, setloading] = useState(false);
   const [imageurls, setimageurls] = useState(defaultImagesArray);
 
-  let count = 0;
-
   const NUMBER_OF_IMAGES = 6;
 
   const ARRAY = Array(NUMBER_OF_IMAGES)
@@ -134,41 +131,9 @@ const ImageGenerationScreen = () => {
 
   async function handleImageGeneration() {
     setloading(true);
-    const url = "https://ai-image-generator3.p.rapidapi.com/generate";
-    const options = {
-      method: "POST",
-      headers: {
-        "x-rapidapi-key": import.meta.env.VITE_SECRET_IMAGE_GENERATION_KEY,
-        "x-rapidapi-host": "ai-image-generator3.p.rapidapi.com",
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        prompt,
-        page: 1,
-      }),
-    };
-
-    try {
-      const response = await fetch(url, options);
-      const result = await response.json();
-      const images = result.results.images.slice(0, NUMBER_OF_IMAGES);
-      let newImageURLS = [];
-      images.forEach((image) => {
-        let imageObject = {
-          image,
-          key: count++,
-        };
-        newImageURLS.push(imageObject);
-        if (newImageURLS.length === images.length) {
-          setimageurls(newImageURLS);
-        }
-      });
-      setprompt("");
-      setloading(false);
-    } catch (error) {
-      console.error(error);
-      setloading(false);
-    }
+    await handleGeneration(NUMBER_OF_IMAGES, setimageurls, prompt);
+    setprompt("");
+    setloading(false);
   }
 
   return (
@@ -197,13 +162,27 @@ const ImageGenerationScreen = () => {
           {!loading ? (
             <>
               {imageurls.length > 0 &&
-                imageurls.map(({ image, key }) => {
-                  return <ImageGrid key={key} image={image} />;
+                imageurls.map(({ item, key }) => {
+                  return (
+                    <ImageGrid
+                      width={IMAGE_HEIGHT}
+                      size={IMAGES_SIZE}
+                      height={IMAGE_HEIGHT}
+                      key={key}
+                      image={item}
+                    />
+                  );
                 })}
             </>
           ) : (
             <>
-              {ARRAY.map((key) => <SkeletonLoader key={key}/>)}
+              {ARRAY.map((key) => (
+                <SkeletonLoader
+                  size={IMAGES_SIZE}
+                  height={IMAGE_HEIGHT}
+                  key={key}
+                />
+              ))}
             </>
           )}
         </GridContainer>
