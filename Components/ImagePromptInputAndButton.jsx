@@ -42,7 +42,13 @@ const ImagePromptInputAndButton = ({value,setvalue,handleImageGeneration,placeho
           borderTopRightRadius: 25,
           borderBottomRightRadius: 25,
         }}
-        onClick={handleImageGeneration}
+        onClick={() => {
+          if(value === "") {
+            alert("Please enter a prompt")
+          }else {
+            handleImageGeneration()
+          }
+        }}
       >
         <Typography
           className="poppins"

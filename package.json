@@ -8,7 +8,7 @@
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "host":"vite --host"
+    "host": "vite --host"
   },
   "dependencies": {
     "@emotion/react": "^11.13.3",
@@ -21,9 +21,9 @@
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-loader-spinner": "^6.1.6",
+    "react-player": "^2.16.0",
     "react-router-dom": "^6.26.2",
-    "replicate": "^0.33.0",
-    "video-react": "^0.16.0"
+    "replicate": "^0.33.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.9.0",
