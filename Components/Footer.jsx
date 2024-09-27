@@ -106,7 +106,7 @@ const Footer = ({ handleNavigate }) => {
                   />
                 </Box>
                 <Box>
-                  <CustomFooterTypography text={"info@findmytool.com"} />
+                  <CustomFooterTypography text={"info@hiskytechs.com"} />
                 </Box>
               </Box>
             </Box>

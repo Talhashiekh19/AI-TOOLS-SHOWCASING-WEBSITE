@@ -13,7 +13,7 @@ const HeadingAndDescription = ({
   return (
     <Box mb={5}  width={"fit-content"} {...props}>
       <Typography
-        mb={1}
+        mb={2}
         sx={{ isolation: "isolate" }}
         position="relative"
         className="paytone heading_underline"

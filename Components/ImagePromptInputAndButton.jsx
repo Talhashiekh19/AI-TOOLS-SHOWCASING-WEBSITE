@@ -1,10 +1,12 @@
 import { Box, Button, TextField, Typography } from "@mui/material";
 import React from "react";
 import { LINK_UNDERLINE_COLOR } from "../Constants";
+import { useResponsivness } from "../Helpers";
 
 const ImagePromptInputAndButton = ({value,setvalue,handleImageGeneration,placeholder}) => {
+  const checkingMd = useResponsivness("down","md");
   return (
-    <Box position="relative" width="80%" mt={3}>
+    <Box position="relative" width={checkingMd ? "100%" : "80%"} mt={3}>
       <TextField
         value={value}
         onChange={(e) => setvalue(e.target.value)}

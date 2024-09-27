@@ -25,6 +25,20 @@ const ImagesGrid = ({ children, size, ...rest }) => {
   );
 };
 
+export async function handleImageDownload(image) {
+  const response = await fetch(image, { mode: "cors" });
+  const dwnloadurl = await response.blob();
+  const blobURL = URL.createObjectURL(dwnloadurl);
+  const link = document.createElement("a");
+  link.href = blobURL;
+  link.download = "download";
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+
+  URL.revokeObjectURL(blobURL);
+}
+
 export const ImageGrid = ({ image, width, height, size }) => {
   const [showdwnld, setshowdwnld] = useState(false);
 
@@ -71,24 +85,11 @@ const DownloadButton = ({ showdwnld, image }) => {
     return null;
   }
 
-  async function handleImageDownload() {
-    const response = await fetch(image, { mode: "cors" });
-    const dwnloadurl = await response.blob();
-    const blobURL = URL.createObjectURL(dwnloadurl);
-    const link = document.createElement("a");
-    link.href = blobURL;
-    link.download = "image.jpg";
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-
-    URL.revokeObjectURL(blobURL);
-  }
 
   return (
     <Box position="absolute" m={1} right={0} bottom={0}>
       <IconButton
-        onClick={handleImageDownload}
+        onClick={() => handleImageDownload(image)}
         sx={{
           bgcolor: "rgba(0,0,0,.5)",
           height: 50,
@@ -146,7 +147,7 @@ const ImageGenerationScreen = () => {
               <span className="colorfull_text"> Generation </span>
             </p>
           }
-          description="Unleash Creativity with AI-Powered Image Generation"
+          description="Transform your ideas into stunning visuals with our AI-powered image generator!"
         />
         <ImagePromptInputAndButton
           value={prompt}

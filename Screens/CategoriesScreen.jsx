@@ -30,13 +30,13 @@ const CategoriesScreen = () => {
       <a ref={ButtonRef} href={`#${name}`}></a>
       <HeadingAndDescription
         heading={"AI Tools Categories"}
-        headingVariant={checkingDownSm ? "h5" : "h3"}
+        headingVariant={checkingDownSm ? "h4" : "h3"}
         descVaraint={checkingDownSm ? "body2" : "body1"}
         center={true}
         description={
           <>
             Streamline your search and find the best AI solutions to enhance
-            your operations <br /> improve customer experiences and drive growth
+            your operations {!checkingDownSm && <br />} improve customer experiences and drive growth
           </>
         }
         display="flex"

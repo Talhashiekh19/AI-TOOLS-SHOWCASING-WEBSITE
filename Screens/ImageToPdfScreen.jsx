@@ -144,8 +144,7 @@ const ImageToPdfScreen = () => {
               <span className="colorfull_text"> PDF Converter </span>
             </p>
           }
-          description="Seamlessly convert text and images into high-quality PDFs with
-          HiSkyPDF."
+          description="Seamlessly transform your images and text into professionally formatted, high-quality PDFs"
         />
         {selectedAnyThing && (
           <Box width={400}>

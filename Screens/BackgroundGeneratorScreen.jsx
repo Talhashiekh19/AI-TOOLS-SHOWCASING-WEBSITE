@@ -80,7 +80,7 @@ const BackgroundGeneratorScreen = () => {
               <span className="colorfull_text"> Generation </span>
             </p>
           }
-          description="Elevate your designs with AI-powered background generation"
+          description="Design stunning, custom backgrounds in seconds with our AI-powered background generation tool!"
         />
       <ImagePromptInputAndButton
         value={value}

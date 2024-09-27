@@ -11,7 +11,7 @@ const ReusableScreenContainer = ({ children }) => {
         alignItems: "center",
         flexDirection: "column",
         gap: 3,
-        pt: 15,
+        pt: 25,
         pb: 5,
       }}
       component="section"
