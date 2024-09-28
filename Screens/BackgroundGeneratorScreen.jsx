@@ -59,11 +59,7 @@ const BackgroundGeneratorScreen = () => {
 
   function handleDownload() {
     downloadButtonRef?.current?.click();
-    setimageurl("");
-    setloaded(false);
     setvalue("");
-    setshowdownload(false);
-    setshowbox(false);
   }
 
   return (

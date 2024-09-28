@@ -93,11 +93,6 @@ const ImageToPdfScreen = () => {
   function handleDownload() {
     downloadButtonRef.current.click();
     setshowDwnlod(true);
-    seturl(null);
-    setfiles(null);
-    setselected("nothing");
-    setpdf(null);
-    setfilename("");
   }
 
   function handleSelection(sel) {
