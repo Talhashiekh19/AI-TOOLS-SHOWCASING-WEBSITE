@@ -40,6 +40,7 @@ const BackgroundGeneratorScreen = () => {
 
   async function handleImageGeneration() {
     try {
+      setshowdownload(false)
       setshowbox(true);
       setloaded(true);
       const image = await query({ inputs: value });
